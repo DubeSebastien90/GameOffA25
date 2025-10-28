@@ -35,6 +35,7 @@
   },
   "name":"PoulpeSimulator",
   "resources":[
+    {"id":{"name":"obj_collision_mouvante","path":"objects/obj_collision_mouvante/obj_collision_mouvante.yy",},},
     {"id":{"name":"obj_collision","path":"objects/obj_collision/obj_collision.yy",},},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
     {"id":{"name":"obj_mass","path":"objects/obj_mass/obj_mass.yy",},},

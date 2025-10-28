@@ -1,11 +1,11 @@
 nbHands = 5
 hands = []
 distParfaite = 30
-bufferDist = 2
 poulpeMasse = 10
 handMasse = 0.5
 
-damp = 0.1
+dampGrabb = 0.1
+dampAir = 0.005
 stifnessWall = 0.02
 stifnessAir = 0.005
 hspd = 0
@@ -31,28 +31,27 @@ function handleHands(controls){
 	for (var i = 0; i < nbHands; i++){
 		hand = hands[i]
 		if controls[i]{
-			if mouse_check_button(mb_left) && !hand.grabbing && hand.nearWall(){
+			if !hand.grabbing && hand.nearWall(){
 				hand.grabbing = true
 				handsGrabbing += 1
-			} else{
-			var mouseDir = point_direction(x,y,mouse_x,mouse_y)
-			hand.mouseForce.x = dcos(mouseDir)*mousePower
-			hand.mouseForce.y = -dsin(mouseDir)*mousePower
 			}
 		} else{
-			hand.mouseForce = new force(0,0)
 			if hand.grabbing == true{
 				handsGrabbing -= 1
 			}
 			hand.grabbing = false
 		}
 		if !hand.grabbing{
+			var mouseDir = point_direction(hand.x,hand.y,mouse_x,mouse_y)
+			hand.mouseForce.x = dcos(mouseDir)*mousePower
+			hand.mouseForce.y = -dsin(mouseDir)*mousePower
+			
 			hand.step() //a la fin de step - la main a bougé
 			//ajouter force sur pieuvre si je grab
-			if handsGrabbing != 0 && controls[i]{
+			if handsGrabbing != 0{
 				var distHand = point_distance(x,y,hand.x,hand.y)
-				if distHand > distParfaite-bufferDist{
-					var puissance = stifnessAir*(distHand-(distParfaite-bufferDist))
+				if distHand > distParfaite{
+					var puissance = stifnessAir*(distHand-(distParfaite))
 					var dirHand = point_direction(x,y,hand.x, hand.y)
 					centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 				}
@@ -60,22 +59,35 @@ function handleHands(controls){
 		} else{
 			//ajouter force sur pieuvre
 			var distHand = point_distance(x,y,hand.x,hand.y)
-			if distHand > distParfaite-bufferDist{
-				var puissance = stifnessWall*(distHand-(distParfaite-bufferDist))
+			if distHand > distParfaite{
+				var puissance = stifnessWall*(distHand-(distParfaite))
+				if puissance < 0{
+					puissance = 0
+				}
 				var dirHand = point_direction(x,y,hand.x, hand.y)
+				
 				centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 			}
 		}
 	}
 	
 	//poulpe
+	var tempDamp = dampGrabb
 	if handsGrabbing == 0{
-	gravForce = new force(0,obj_game.grav*10)
-	} else gravForce = new force(0,obj_game.grav*2)
+		tempDamp = dampAir
+	} 
+	gravForce = new force(0,obj_game.grav*1)
+	
+	if place_meeting(x,y+1,obj_collision){
+		tempDamp = dampGrabb
+	}
 	
 	allForces = centreMasseForce.add_force(gravForce)
+
 	
-	frictionForce = new force(damp*hspd, damp*vspd)
+	var _spd = point_distance(0,0,hspd,vspd);
+	var nonlinearDamp = tempDamp * (1 + 0.1 * _spd);
+	frictionForce = new force(nonlinearDamp * hspd, nonlinearDamp * vspd);
 	
 	allForces = allForces.sub_force(frictionForce)
 	

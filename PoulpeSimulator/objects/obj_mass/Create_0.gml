@@ -9,6 +9,8 @@ grabbing = false
 myPoulpe = noone
 mouseForce = new force(0,0)
 
+myCollision = noone
+
 function angleEstProche(angle1, angle2, tol){
 	angle1 = angle1%360
 	angle2 = angle2&360
@@ -31,18 +33,21 @@ function step(){
 	gravForce = new force(0,obj_game.grav)
 	
 	var poulpeStrength = stifness*(dist-myPoulpe.distParfaite)
+	if poulpeStrength < 0{
+		poulpeStrength = 0
+	}
 	
 	poulpeForce = new force(poulpeStrength*dcos(dir), -poulpeStrength*dsin(dir))
 	
 	allForces = poulpeForce.add_force(gravForce.add_force(mouseForce))
 	
-	frictionForce = new force(damp*hspd, damp*vspd)
+	var nonlinearDamp = damp * (1 + 0.1 * spd);
+	frictionForce = new force(nonlinearDamp * hspd, nonlinearDamp * vspd);
 	
 	allForces = allForces.sub_force(frictionForce)
 
 	hspd += allForces.x
 	vspd += allForces.y
-	
 	
 	if place_meeting(x,y+vspd,obj_collision){
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){

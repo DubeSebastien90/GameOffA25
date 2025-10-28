@@ -1,17 +1,21 @@
 {
   "$GMObject":"",
-  "%Name":"obj_collision",
+  "%Name":"obj_collision_mouvante",
   "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_collision",
+  "name":"obj_collision_mouvante",
   "overriddenProperties":[],
   "parent":{
     "name":"Objets",
     "path":"folders/Objets.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_collision",
+    "path":"objects/obj_collision/obj_collision.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
