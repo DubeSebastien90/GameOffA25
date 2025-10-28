@@ -1,0 +1,15 @@
+angle = 0
+max_spd = 2
+tour = 0
+prev_angle = angle
+hspd = 0
+vspd = 0
+show_angle = 0
+xscale = 1
+yscale = 1
+real_spd = 0
+grav = 0.08
+inWater = false
+temps = 0
+detresse = false
+cooldown_part = 30

@@ -45,7 +45,7 @@ function handleHands(controls){
 			hand.grabbing = false
 		}
 		if !hand.grabbing{
-			hand.step()
+			hand.step() //a la fin de step - la main a bougé
 			//ajouter force sur pieuvre si je grab
 			if handsGrabbing != 0 && controls[i]{
 				var distHand = point_distance(x,y,hand.x,hand.y)
