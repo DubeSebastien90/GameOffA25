@@ -1,0 +1,9 @@
+# Auto-detect text, as Line Feed
+* text=auto eol=lf
+
+# Gamemaker files as Line Feed
+*.yy   text eol=lf
+*.gml  text eol=lf
+
+# Assets as Binaries
+*.png binary
