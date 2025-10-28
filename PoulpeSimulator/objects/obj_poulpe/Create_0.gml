@@ -18,12 +18,14 @@ handsGrabbing = 0;
 
 for (var i = 0; i < nbHands; i++){
 	hand = instance_create_layer(x + (-2+i)*10, y+25,"physics",obj_mass)
-	hand.myPoulpe = self
+	with (hand){
+		myPoulpe = other
+	}
 	hands[i] = hand
 }
 
 function handleHands(controls){
-	centreMasseForce = force_create(0,0)
+	centreMasseForce = new force(0,0)
 	
 	//hands
 	for (var i = 0; i < nbHands; i++){
@@ -38,7 +40,7 @@ function handleHands(controls){
 			hand.mouseForce.y = -dsin(mouseDir)*mousePower
 			}
 		} else{
-			hand.mouseForce = force_create(0,0)
+			hand.mouseForce = new force(0,0)
 			if hand.grabbing == true{
 				handsGrabbing -= 1
 			}
@@ -52,7 +54,7 @@ function handleHands(controls){
 				if distHand > distParfaite-bufferDist{
 					var puissance = stifnessAir*(distHand-(distParfaite-bufferDist))
 					var dirHand = point_direction(x,y,hand.x, hand.y)
-					centreMasseForce = add_forces(centreMasseForce, force_create(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
+					centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 				}
 			}
 		} else{
@@ -61,21 +63,21 @@ function handleHands(controls){
 			if distHand > distParfaite-bufferDist{
 				var puissance = stifnessWall*(distHand-(distParfaite-bufferDist))
 				var dirHand = point_direction(x,y,hand.x, hand.y)
-				centreMasseForce = add_forces(centreMasseForce, force_create(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
+				centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 			}
 		}
 	}
 	
 	//poulpe
 	if handsGrabbing == 0{
-	gravForce = force_create(0,obj_game.grav*10)
-	} else gravForce = force_create(0,obj_game.grav*2)
+	gravForce = new force(0,obj_game.grav*10)
+	} else gravForce = new force(0,obj_game.grav*2)
 	
-	allForces = add_forces(centreMasseForce, gravForce)
+	allForces = centreMasseForce.add_force(gravForce)
 	
-	frictionForce = force_create(damp*hspd, damp*vspd)
+	frictionForce = new force(damp*hspd, damp*vspd)
 	
-	allForces = sub_forces(allForces, frictionForce)
+	allForces = allForces.sub_force(frictionForce)
 	
 	hspd += allForces.x
 	vspd += allForces.y

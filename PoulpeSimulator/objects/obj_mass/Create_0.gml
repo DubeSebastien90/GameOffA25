@@ -7,7 +7,7 @@ stifness = 0.01
 grabbing = false
 
 myPoulpe = noone
-mouseForce = force_create(0,0)
+mouseForce = new force(0,0)
 
 function angleEstProche(angle1, angle2, tol){
 	angle1 = angle1%360
@@ -20,6 +20,7 @@ function angleEstProche(angle1, angle2, tol){
 }
 
 function step(){
+	if (myPoulpe == noone) exit;
 	
 	var pX = myPoulpe.x 
 	var pY = myPoulpe.y
@@ -27,17 +28,17 @@ function step(){
 	var dist = point_distance(x, y, pX, pY)
 	var spd = sqrt(hspd*hspd + vspd*vspd)
 	
-	gravForce = force_create(0,obj_game.grav)
+	gravForce = new force(0,obj_game.grav)
 	
 	var poulpeStrength = stifness*(dist-myPoulpe.distParfaite)
 	
-	poulpeForce = force_create(poulpeStrength*dcos(dir), -poulpeStrength*dsin(dir))
+	poulpeForce = new force(poulpeStrength*dcos(dir), -poulpeStrength*dsin(dir))
 	
-	allForces = add_forces(add_forces(poulpeForce,gravForce),mouseForce)
+	allForces = poulpeForce.add_force(gravForce.add_force(mouseForce))
 	
-	frictionForce = force_create(damp*hspd, damp*vspd)
+	frictionForce = new force(damp*hspd, damp*vspd)
 	
-	allForces = sub_forces(allForces,frictionForce)
+	allForces = allForces.sub_force(frictionForce)
 
 	hspd += allForces.x
 	vspd += allForces.y
