@@ -89,15 +89,19 @@ function step(){
 }
 
 function nearWall() {
-    var inst = instance_nearest(x, y, obj_collision);
+    var nearest = noone;
+    var bestDist = 0.5; // seuil de proximité maximum
+	var moi = self
 
-    if (inst != noone) {
-        if distance_to_object(inst) < 1 {
-            return inst; 
+    with (obj_collision) {
+        var d = distance_to_object(moi)
+        if (d < bestDist) {
+            bestDist = d;
+            nearest = id; // on garde une référence à cette instance
         }
     }
 
-    return noone; //marche pas
+    return nearest;
 }
 
 function handleMovingBlocks(){
