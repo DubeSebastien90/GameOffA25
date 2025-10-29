@@ -1,3 +1,5 @@
-grav = 0.2
+grav = 0.02
 
 poulpe = obj_poulpe
+
+nbInstances = 7;

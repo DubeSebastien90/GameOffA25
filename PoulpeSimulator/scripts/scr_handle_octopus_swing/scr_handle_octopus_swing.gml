@@ -7,7 +7,6 @@ function handle_octopus_swing(){
 		var arm = myArms[a]
 		if (arm.isGrappled){
 			isSwinging = true
-			
 			var gripper = arm.masses[c_indexGripper]
 			
 			var dTension = new vec2(gripper.x-x, gripper.y-y)
@@ -27,6 +26,19 @@ function handle_octopus_swing(){
 				var pushForce = dPush.scale(c_pushStrength/distPush)
 				totalArmForce = totalArmForce.add_vec2(pushForce)
 			}
+		} else{
+			var firstSegment = arm.masses[1]
+			
+			var dPull = new vec2(firstSegment.x-x, firstSegment.y-y)
+			var distPull = dPull.magnitude()
+			
+			var targetDist = c_armLength
+			
+			if (distPull > targetDist){
+				var strength = c_stiffnessAir * (distPull-targetDist)
+				var pullForce = dPull.scale(strength/distPull)
+				totalArmForce = totalArmForce.add_vec2(pullForce)
+			}
 		}
 	}
 	
@@ -45,19 +57,28 @@ function handle_octopus_swing(){
 	hspd += allForce.x
 	vspd += allForce.y
 	
-	if (place_meeting(x+hspd, y, obj_collision)){
-		while (!place_meeting(x+sign(hspd), y, obj_collision)){
-			x += sign(hspd)
+	/*var wall = instance_position(x, y, obj_collision);
+	if (wall != noone){
+		// Calculate the distance to each edge from the particle's position
+		var push_left = x - wall.bbox_left
+		var push_right = x - wall.bbox_right
+		var push_top = y - wall.bbox_top
+		var push_bottom = y - wall.bbox_bottom
+
+		// Find the smallest push distance (the one with the smallest absolute value)
+		var min_push_x = (abs(push_left) < abs(push_right)) ? push_left : push_right
+		var min_push_y = (abs(push_top) < abs(push_bottom)) ? push_top : push_bottom
+
+		// Find out if it's easier to push out horizontally or vertically
+		if (abs(min_push_x) < abs(min_push_y)) {
+			// Push horizontally
+			x -= min_push_x
+		} else {
+			// Push vertically
+			y -= min_push_y
 		}
-		hspd = 0
-	}
-	if (place_meeting(x, y+vspd, obj_collision)){
-		while (!place_meeting(x, y+sign(vspd), obj_collision)){
-			y += sign(vspd)
-		}
-		vspd = 0
-	}
-	
-	x += hspd
-	y += vspd
+
+		x += hspd
+		y += vspd
+	}*/
 }

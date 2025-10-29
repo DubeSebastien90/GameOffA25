@@ -8,13 +8,13 @@ c_stiffnessAir = 0.005
 c_nbConstraintIteration = 8
 
 c_nbArms = 5
-c_nbSegments = 7
+c_nbSegments = 6
 c_indexGripper = c_nbSegments - 1
 c_armLength = 5
 c_armStrength = 300
 c_armStiffness = 0.005
 c_grabRadius = 3
-c_pushStrength = 0.03
+c_pushStrength = 0.04
 myArms = []
 
 for (var a = 0; a < c_nbArms; a++){
