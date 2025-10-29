@@ -4,6 +4,9 @@ vspd = 0
 damp = 0.05
 stifness = 0.01
 
+handRepulsionStiffness = 0.2
+minHandDist = 5
+
 grabbing = false
 active = true
 
@@ -46,7 +49,28 @@ function step(){
 	
 	poulpeForce = new force(poulpeStrength*dcos(dir), -poulpeStrength*dsin(dir))
 	
-	allForces = poulpeForce.add_force(gravForce.add_force(mouseForce))
+	handRepulsionForce = new force(0,0)
+	var moi = id; 
+	with (obj_mass) {
+    if (id != moi) { // ne pas se repousser soi-même
+        var handDist = point_distance(x, y, other.x, other.y);
+        
+        if (handDist < minHandDist && handDist > 0) {
+            // Direction de l’autre vers moi
+            var handDir = point_direction(x, y, other.x, other.y);
+            
+            // Intensité inversement proportionnelle à la distance
+            var forceMag = (minHandDist - handDist) * handRepulsionStiffness; // 🔧 0.05 = facteur de raideur
+
+            // Ajoute la force de répulsion vers l’extérieur
+            other.handRepulsionForce = other.handRepulsionForce.add_force(
+                new force(lengthdir_x(forceMag, handDir), lengthdir_y(forceMag, handDir))
+            );
+        }
+    }
+}
+	
+	allForces = handRepulsionForce.add_force(poulpeForce.add_force(gravForce.add_force(mouseForce)))
 	
 	var nonlinearDamp = damp * (1 + 0.1 * spd);
 	frictionForce = new force(nonlinearDamp * hspd, nonlinearDamp * vspd);
