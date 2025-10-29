@@ -31,17 +31,21 @@ function handleHands(controls){
 	for (var i = 0; i < nbHands; i++){
 		hand = hands[i]
 		if controls[i]{
-			if !hand.grabbing && hand.nearWall(){
-				hand.grabbing = true
-				handsGrabbing += 1
+			var wall = hand.nearWall();
+			if (!hand.grabbing && wall != noone) {
+				hand.grabbing = true;
+				hand.myCollision = wall;
+				handsGrabbing += 1;
 			}
 		} else{
 			if hand.grabbing == true{
 				handsGrabbing -= 1
 			}
+			hand.myCollision = noone
 			hand.grabbing = false
 		}
 		if !hand.grabbing{
+			hand._index = 0
 			var mouseDir = point_direction(hand.x,hand.y,mouse_x,mouse_y)
 			hand.mouseForce.x = dcos(mouseDir)*mousePower
 			hand.mouseForce.y = -dsin(mouseDir)*mousePower
@@ -57,6 +61,8 @@ function handleHands(controls){
 				}
 			}
 		} else{
+			hand.handleMovingBlocks()
+			hand._index = 1
 			//ajouter force sur pieuvre
 			var distHand = point_distance(x,y,hand.x,hand.y)
 			if distHand > distParfaite{
@@ -93,6 +99,15 @@ function handleHands(controls){
 	
 	hspd += allForces.x
 	vspd += allForces.y
+	
+	var inst = instance_place(x, y, obj_collision_mouvante);
+
+	if (inst != noone) {
+		while (place_meeting(x, y, obj_collision_mouvante)) {
+			x += sign(inst.hspd);
+			y += sign(inst.vspd)
+		}
+	}
 	
 	if place_meeting(x,y+vspd,obj_collision){
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){

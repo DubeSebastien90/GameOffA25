@@ -9,6 +9,8 @@ grabbing = false
 myPoulpe = noone
 mouseForce = new force(0,0)
 
+_index = 0
+
 myCollision = noone
 
 function angleEstProche(angle1, angle2, tol){
@@ -49,6 +51,16 @@ function step(){
 	hspd += allForces.x
 	vspd += allForces.y
 	
+	var inst = instance_place(x, y, obj_collision_mouvante);
+
+	if (inst != noone) {
+		while (place_meeting(x, y, obj_collision_mouvante)) {
+			x += sign(inst.hspd);
+			y += sign(inst.vspd)
+		}
+	}
+	
+	
 	if place_meeting(x,y+vspd,obj_collision){
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){
 		y += sign(vspd)
@@ -76,9 +88,21 @@ function step(){
 	y += vspd
 }
 
-function nearWall(){
-	if distance_to_object(obj_collision) < 1 {
-		return true
+function nearWall() {
+    var inst = instance_nearest(x, y, obj_collision);
+
+    if (inst != noone) {
+        if distance_to_object(inst) < 1 {
+            return inst; 
+        }
+    }
+
+    return noone; //marche pas
+}
+
+function handleMovingBlocks(){
+	if (myCollision != noone) {
+		x += myCollision.hspd;
+		y += myCollision.vspd
 	}
-	return false
 }
