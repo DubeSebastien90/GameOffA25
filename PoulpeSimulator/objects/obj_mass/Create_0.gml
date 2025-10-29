@@ -5,6 +5,7 @@ damp = 0.05
 stifness = 0.01
 
 grabbing = false
+active = true
 
 myPoulpe = noone
 mouseForce = new force(0,0)
@@ -12,6 +13,10 @@ mouseForce = new force(0,0)
 _index = 0
 
 myCollision = noone
+
+puissanceTest = 0
+
+index = 0
 
 function angleEstProche(angle1, angle2, tol){
 	angle1 = angle1%360

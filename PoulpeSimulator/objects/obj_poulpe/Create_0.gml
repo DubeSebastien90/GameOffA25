@@ -15,11 +15,13 @@ mousePower = 0.15
 controls = [0,0,0,0,0]
 
 handsGrabbing = 0;
+forceMaxArms = 0.8
 
 for (var i = 0; i < nbHands; i++){
 	hand = instance_create_layer(x + (-2+i)*10, y+25,"physics",obj_mass)
 	with (hand){
 		myPoulpe = other
+		index = i
 	}
 	hands[i] = hand
 }
@@ -30,6 +32,14 @@ function handleHands(controls){
 	//hands
 	for (var i = 0; i < nbHands; i++){
 		hand = hands[i]
+		
+		if !hand.active{
+			if hand.grabbing{
+				hand.handleMovingBlocks()
+			}
+			continue
+		}
+		
 		if controls[i]{
 			var wall = hand.nearWall();
 			if (!hand.grabbing && wall != noone) {
@@ -67,6 +77,9 @@ function handleHands(controls){
 			var distHand = point_distance(x,y,hand.x,hand.y)
 			if distHand > distParfaite{
 				var puissance = stifnessWall*(distHand-(distParfaite))
+				if puissance > forceMaxArms{
+					briserBras(i)
+				}
 				if puissance < 0{
 					puissance = 0
 				}
@@ -134,4 +147,12 @@ function handleHands(controls){
 	
 	x += hspd
 	y += vspd
+}
+
+function briserBras(index){
+	hands[index].active = false
+	if hands[index].grabbing{
+		handsGrabbing -= 1
+	}
+	hands[index]._index = 2
 }
