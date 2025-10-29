@@ -31,6 +31,7 @@ function handleHands(controls){
 	
 	//hands
 	for (var i = 0; i < nbHands; i++){
+		hand.computeJoints()
 		hand = hands[i]
 		
 		if !hand.active{

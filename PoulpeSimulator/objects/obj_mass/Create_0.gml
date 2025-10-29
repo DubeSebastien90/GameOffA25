@@ -21,6 +21,15 @@ puissanceTest = 0
 
 index = 0
 
+poulpeCirconference = 5
+
+nbJoints = 10
+for (var i = 0; i < nbJoints; i++){
+	joints[i] = new force(0,0)
+	offset[i] = 0
+}
+temps = random_range(0,360)
+
 function angleEstProche(angle1, angle2, tol){
 	angle1 = angle1%360
 	angle2 = angle2&360
@@ -117,20 +126,49 @@ function step(){
 	y += vspd
 }
 
-function nearWall() {
-    var nearest = noone;
-    var bestDist = 1.5; // seuil de proximité maximum
-	var moi = self
+function computeJoints(){
+	//joints
+	var pX = myPoulpe.x
+	var pY = myPoulpe.y
+	var dist = point_distance(x, y, pX, pY)
+	var effectiveDist = max(dist - poulpeCirconference, 0);
+	var invDir = point_direction(pX, pY, x, y);
+	// espacement entre chaque joint
+	var _step = effectiveDist / (nbJoints + 1);
 
-    with (obj_collision) {
-        var d = distance_to_object(moi)
-        if (d < bestDist) {
-            bestDist = d;
-            nearest = id; // on garde une référence à cette instance
-        }
+	temps += 10
+	for (var i = 0; i < nbJoints; i++) {
+		offset[i] = dsin(temps+i*20) * 5
+		var distFromPoulpe = poulpeCirconference + _step * (i + 1);
+		var jx = pX + lengthdir_x(distFromPoulpe, invDir);
+		var jy = pY + lengthdir_y(distFromPoulpe, invDir);
+
+		// on stocke un struct "force" {x, y}
+		joints[i] = { x: jx, y: jy };
+	}
+}
+
+
+
+function nearWall() {
+    var radius = 2; // 🔧 distance autour de la main
+    var wall = noone;
+
+    // 🔹 Vérifie les 4 directions cardinales
+    if (place_meeting(x + radius, y, obj_collision)) {
+        wall = instance_place(x + radius, y, obj_collision);
+    }
+    else if (place_meeting(x - radius, y, obj_collision)) {
+        wall = instance_place(x - radius, y, obj_collision);
+    }
+    else if (place_meeting(x, y + radius, obj_collision)) {
+        wall = instance_place(x, y + radius, obj_collision);
+    }
+    else if (place_meeting(x, y - radius, obj_collision)) {
+        wall = instance_place(x, y - radius, obj_collision);
     }
 
-    return nearest;
+    return wall;
 }
 
 function handleMovingBlocks(){
