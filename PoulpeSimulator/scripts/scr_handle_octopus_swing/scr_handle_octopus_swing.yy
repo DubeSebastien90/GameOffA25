@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"Script2",
+  "%Name":"scr_handle_octopus_swing",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Script2",
+  "name":"scr_handle_octopus_swing",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

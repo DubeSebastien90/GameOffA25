@@ -12,9 +12,9 @@ if keyboard_check_released(vk_enter){
 }
 
 
-if keyboard_check_released(vk_up){
-	poulpe.c_armStrength += 0.01
+if keyboard_check(vk_up){
+	poulpe.c_pushStrength += 0.01
 }
-if keyboard_check_released(vk_down){
-	poulpe.c_armStrength -= 0.01
+if keyboard_check(vk_down){
+	poulpe.c_pushStrength -= 0.01
 }

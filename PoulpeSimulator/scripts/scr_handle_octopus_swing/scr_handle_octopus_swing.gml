@@ -1,5 +1,5 @@
 function handle_octopus_swing(){
-	var tensionForce = new vec2(0,0)
+	var totalArmForce = new vec2(0,0)
 	var _gravity = new vec2(0, obj_game.grav)
 	var isSwinging = false
 	
@@ -10,19 +10,27 @@ function handle_octopus_swing(){
 			
 			var gripper = arm.masses[c_indexGripper]
 			
-			var d = new vec2(gripper.x-x, gripper.y-y)
-			var dist = d.magnitude()
-			
+			var dTension = new vec2(gripper.x-x, gripper.y-y)
+			var distTension = dTension.magnitude()
 			var targetDist = c_armLength * c_nbSegments
 			
-			if (dist > targetDist){
-				var strength = c_armStiffness * (dist-targetDist)
-				var force = d.scale(strength/dist)
-				tensionForce = tensionForce.add_vec2(force)
+			if (distTension > targetDist){
+				var strength = c_armStiffness * (distTension-targetDist)
+				var tensionForce = dTension.scale(strength/distTension)
+				totalArmForce = totalArmForce.add_vec2(tensionForce)
+			}
+			
+			var dPush = new vec2(mouse_x-gripper.x, mouse_y-gripper.y)
+			var distPush = dPush.magnitude()
+			
+			if (distPush > 1){
+				var pushForce = dPush.scale(c_pushStrength/distPush)
+				totalArmForce = totalArmForce.add_vec2(pushForce)
 			}
 		}
 	}
-	var allForce = tensionForce.add_vec2(_gravity)
+	
+	var allForce = totalArmForce.add_vec2(_gravity)
 	
 	var isGrounded = place_meeting(x, y+1, obj_collision)
 	var tempDamp = (isSwinging || isGrounded) ? c_dampGrab : c_dampAir

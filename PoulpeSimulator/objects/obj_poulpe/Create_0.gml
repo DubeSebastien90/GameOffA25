@@ -12,7 +12,9 @@ c_nbSegments = 7
 c_indexGripper = c_nbSegments - 1
 c_armLength = 5
 c_armStrength = 300
-c_armStiffness = 0.01
+c_armStiffness = 0.005
+c_grabRadius = 3
+c_pushStrength = 0.03
 myArms = []
 
 for (var a = 0; a < c_nbArms; a++){
@@ -76,7 +78,7 @@ function Arm(_x, _y) constructor{
 		
 		//Constraints
 		for (var i = 0; i < poulpe.c_nbConstraintIteration; i++){
-			for (var s = 0; s < poulpe.c_indexGripper; s++){
+			for (var s = 1; s < poulpe.c_nbSegments; s++){
 				solveCollision(masses[s])
 			}
 			if (isGrappled){
@@ -105,7 +107,7 @@ function Arm(_x, _y) constructor{
 		var gripper = masses[poulpe.c_indexGripper]
 		
 		if (control && !isGrappled){
-			var movingTarget = instance_position(gripper.x, gripper.y, obj_collision_mouvante)
+			var movingTarget = collision_circle(gripper.x, gripper.y, poulpe.c_grabRadius, obj_collision_mouvante, false, true)
 			if (instance_exists(movingTarget)){
 				isGrappled = true
 				isTargetMoving = true
@@ -113,7 +115,7 @@ function Arm(_x, _y) constructor{
 				localGrapple = new vec2(gripper.x-movingTarget.x, gripper.y-movingTarget.y)
 				return
 			}
-			var staticTarget = instance_position(gripper.x, gripper.y, obj_collision)
+			var staticTarget = collision_circle(gripper.x, gripper.y, poulpe.c_grabRadius, obj_collision, false, true)
 			if (instance_exists(staticTarget)){
 				isGrappled = true
 				isTargetMoving = false
@@ -172,22 +174,24 @@ function Arm(_x, _y) constructor{
 	    if (wall == noone) return;
 
 	    // Calculate the distance to each edge from the particle's position
-	    var push_left = m.x - wall.bbox_left;
-	    var push_right = m.x - wall.bbox_right;
-	    var push_top = m.y - wall.bbox_top;
-	    var push_bottom = m.y - wall.bbox_bottom;
+	    var push_left = m.x - wall.bbox_left
+	    var push_right = m.x - wall.bbox_right
+	    var push_top = m.y - wall.bbox_top
+	    var push_bottom = m.y - wall.bbox_bottom
 
 	    // Find the smallest push distance (the one with the smallest absolute value)
-	    var min_push_x = (abs(push_left) < abs(push_right)) ? push_left : push_right;
-	    var min_push_y = (abs(push_top) < abs(push_bottom)) ? push_top : push_bottom;
+	    var min_push_x = (abs(push_left) < abs(push_right)) ? push_left : push_right
+	    var min_push_y = (abs(push_top) < abs(push_bottom)) ? push_top : push_bottom
 
 	    // Find out if it's easier to push out horizontally or vertically
 	    if (abs(min_push_x) < abs(min_push_y)) {
 	        // Push horizontally
-	        m.x -= min_push_x;
+	        m.x -= min_push_x
+			m.xPrev = m.x
 	    } else {
 	        // Push vertically
-	        m.y -= min_push_y;
+	        m.y -= min_push_y
+			m.yPrev = m.y
 	    }
 	}
 }
