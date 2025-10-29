@@ -4,8 +4,8 @@ vspd = 0
 damp = 0.05
 stifness = 0.01
 
-handRepulsionStiffness = 0.2
-minHandDist = 5
+handRepulsionStiffness = 0.05
+minHandDist = 3
 
 grabbing = false
 active = true
@@ -119,7 +119,7 @@ function step(){
 
 function nearWall() {
     var nearest = noone;
-    var bestDist = 0.5; // seuil de proximité maximum
+    var bestDist = 1.5; // seuil de proximité maximum
 	var moi = self
 
     with (obj_collision) {
