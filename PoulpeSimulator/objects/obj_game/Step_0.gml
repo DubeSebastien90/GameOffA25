@@ -10,3 +10,11 @@ if keyboard_check_released(vk_escape){
 if keyboard_check_released(vk_enter){
 	game_restart()
 }
+
+
+if keyboard_check_released(vk_up){
+	poulpe.c_armStrength += 0.01
+}
+if keyboard_check_released(vk_down){
+	poulpe.c_armStrength -= 0.01
+}

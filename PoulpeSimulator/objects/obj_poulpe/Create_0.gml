@@ -1,122 +1,193 @@
-nbHands = 5
-hands = []
-distParfaite = 30
-poulpeMasse = 10
-handMasse = 0.5
-
-dampGrabb = 0.1
-dampAir = 0.005
-stifnessWall = 0.02
-stifnessAir = 0.005
 hspd = 0
 vspd = 0
+c_dampGrab = 0.1
+c_dampAir = 0.005
+c_stiffnessGrab = 0.02
+c_stiffnessAir = 0.005
 
-mousePower = 0.15
-controls = [0,0,0,0,0]
+c_nbConstraintIteration = 8
 
-handsGrabbing = 0;
+c_nbArms = 5
+c_nbSegments = 7
+c_indexGripper = c_nbSegments - 1
+c_armLength = 5
+c_armStrength = 300
+c_armStiffness = 0.01
+myArms = []
 
-for (var i = 0; i < nbHands; i++){
-	hand = instance_create_layer(x + (-2+i)*10, y+25,"physics",obj_mass)
-	with (hand){
-		myPoulpe = other
-	}
-	hands[i] = hand
+for (var a = 0; a < c_nbArms; a++){
+	var new_arm = new Arm(x, y)
+	array_push(myArms, new_arm)
 }
 
-function handleHands(controls){
-	centreMasseForce = new force(0,0)
-	
-	//hands
-	for (var i = 0; i < nbHands; i++){
-		hand = hands[i]
-		if controls[i]{
-			if !hand.grabbing && hand.nearWall(){
-				hand.grabbing = true
-				handsGrabbing += 1
-			}
-		} else{
-			if hand.grabbing == true{
-				handsGrabbing -= 1
-			}
-			hand.grabbing = false
-		}
-		if !hand.grabbing{
-			var mouseDir = point_direction(hand.x,hand.y,mouse_x,mouse_y)
-			hand.mouseForce.x = dcos(mouseDir)*mousePower
-			hand.mouseForce.y = -dsin(mouseDir)*mousePower
-			
-			hand.step() //a la fin de step - la main a bougé
-			//ajouter force sur pieuvre si je grab
-			if handsGrabbing != 0{
-				var distHand = point_distance(x,y,hand.x,hand.y)
-				if distHand > distParfaite{
-					var puissance = stifnessAir*(distHand-(distParfaite))
-					var dirHand = point_direction(x,y,hand.x, hand.y)
-					centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
-				}
-			}
-		} else{
-			//ajouter force sur pieuvre
-			var distHand = point_distance(x,y,hand.x,hand.y)
-			if distHand > distParfaite{
-				var puissance = stifnessWall*(distHand-(distParfaite))
-				if puissance < 0{
-					puissance = 0
-				}
-				var dirHand = point_direction(x,y,hand.x, hand.y)
-				
-				centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
-			}
-		}
-	}
-	
-	//poulpe
-	var tempDamp = dampGrabb
-	if handsGrabbing == 0{
-		tempDamp = dampAir
-	} 
-	gravForce = new force(0,obj_game.grav*1)
-	
-	if place_meeting(x,y+1,obj_collision){
-		tempDamp = dampGrabb
-	}
-	
-	allForces = centreMasseForce.add_force(gravForce)
+function Mass(_x, _y) constructor{
+	x = _x
+	y = _y
+	xPrev = _x
+	yPrev = _y
+}
 
+function Arm(_x, _y) constructor{
+	masses = []
+	poulpe = obj_poulpe
+
+	isGrappled = false	
+	isTargetMoving = false
+	grappledTarget = noone
+	grappledTarget = noone
+	localGrapple = new vec2(0, 0)
+	staticGrapple = new vec2(0, 0)
 	
-	var _spd = point_distance(0,0,hspd,vspd);
-	var nonlinearDamp = tempDamp * (1 + 0.1 * _spd);
-	frictionForce = new force(nonlinearDamp * hspd, nonlinearDamp * vspd);
-	
-	allForces = allForces.sub_force(frictionForce)
-	
-	hspd += allForces.x
-	vspd += allForces.y
-	
-	if place_meeting(x,y+vspd,obj_collision){
-	while!(place_meeting(x,y+sign(vspd),obj_collision)){
-		y += sign(vspd)
-	}
-	vspd = 0
+	for (var s = 0; s < poulpe.c_nbSegments; s++){
+		array_push(masses, new Mass(_x, _y))
 	}
 	
-	if place_meeting(x+hspd,y,obj_collision){
-	while!(place_meeting(x+sign(hspd),y,obj_collision)){
-		x += sign(hspd)
-	}
-	hspd = 0
+	static updatePhysics = function(_x, _y, dt_sq){
+		var gripper = masses[poulpe.c_indexGripper]
+		var currDamp = 1 - (isGrappled ? poulpe.c_dampGrab : poulpe.c_dampAir)
+		var currStiffness = isGrappled ? poulpe.c_stiffnessGrab : poulpe.c_stiffnessAir
+		
+		//Root follow head
+		masses[0].x = _x
+		masses[0].y = _y
+		masses[0].xPrev = _x
+		masses[0].yPrev = _y
+		
+		//Integrate
+		for (var s = 1; s < poulpe.c_nbSegments; s++){
+			var mass = masses[s]
+			
+			var xVel = (mass.x-mass.xPrev) * currDamp
+			var yVel = (mass.y-mass.yPrev) * currDamp
+			
+			mass.xPrev = mass.x
+			mass.yPrev = mass.y
+			
+			var acc = new vec2(0, obj_game.grav)
+			
+			if (s == poulpe.c_indexGripper && !isGrappled){
+				var mouseForce = applyMousePull(mass)
+				acc = acc.add_vec2(mouseForce)
+			}
+			
+			mass.x += xVel + acc.x * dt_sq
+			mass.y += yVel + acc.y * dt_sq
+		}
+		
+		//Constraints
+		for (var i = 0; i < poulpe.c_nbConstraintIteration; i++){
+			for (var s = 0; s < poulpe.c_indexGripper; s++){
+				solveCollision(masses[s])
+			}
+			if (isGrappled){
+				var anchorPos = getGrappleWorldPos();
+				gripper.x = anchorPos.x
+				gripper.y = anchorPos.y
+				gripper.xPrev = anchorPos.x
+				gripper.yPrev = anchorPos.y
+			}
+			for (var s = 0; s < poulpe.c_indexGripper; s++){
+				var m1 = masses[s]
+				var m2 = masses[s+1]
+				solveConstraint(m1, m2, currStiffness)
+			}
+		}
 	}
 	
-	if place_meeting(x+hspd,y+vspd,obj_collision){
-	while!(place_meeting(x+sign(hspd),y+sign(vspd),obj_collision)){
-		x += sign(hspd)
-		y += sign(vspd)
-	}
-	hspd = 0
-	vspd = 0
+	static drawArm = function(){
+		for (var s = 0; s < poulpe.c_nbSegments; s++){
+			if (s == poulpe.c_indexGripper && isGrappled) draw_sprite(spr_mass, 1, masses[s].x, masses[s].y)
+			else draw_sprite(spr_mass, 0, masses[s].x, masses[s].y)
+		}
 	}
 	
-	x += hspd
-	y += vspd
+	static checkGrapple = function(control){
+		var gripper = masses[poulpe.c_indexGripper]
+		
+		if (control && !isGrappled){
+			var movingTarget = instance_position(gripper.x, gripper.y, obj_collision_mouvante)
+			if (instance_exists(movingTarget)){
+				isGrappled = true
+				isTargetMoving = true
+				grappledTarget = movingTarget
+				localGrapple = new vec2(gripper.x-movingTarget.x, gripper.y-movingTarget.y)
+				return
+			}
+			var staticTarget = instance_position(gripper.x, gripper.y, obj_collision)
+			if (instance_exists(staticTarget)){
+				isGrappled = true
+				isTargetMoving = false
+				staticGrapple = new vec2(gripper.x, gripper.y)
+				return
+			}
+		}
+		if (!control && isGrappled){
+			isGrappled = false
+			isTargetMoving = false
+			grappledTarget = noone
+		}
+	}
+		
+	//Helper functions
+	static applyMousePull = function(mass){
+		var d = new vec2(mouse_x-mass.x, mouse_y-mass.y)
+		var dist = point_distance(0, 0, d.x, d.y)
+		
+		if (dist > 1) {
+			return new vec2((d.x/dist)*poulpe.c_armStrength, (d.y/dist)*poulpe.c_armStrength)
+		}	
+		return new vec2(0,0)
+	}
+	
+	static getGrappleWorldPos = function(){
+		if (isTargetMoving){
+			if (instance_exists(grappledTarget)){
+				return new vec2(grappledTarget.x+localGrapple.x, grappledTarget.y+localGrapple.y)
+			} else{
+				isGrappled = false
+				return new vec2(masses[poulpe.c_indexGripper].x, masses[poulpe.c_indexGripper].y)
+			}
+		} else{
+			return staticGrapple
+		}
+	}
+	
+	static solveConstraint = function(m1, m2, stiffness){
+		var d = new vec2(m2.x-m1.x, m2.y-m1.y)
+		var dist = d.magnitude()
+		
+		var diff = (dist-poulpe.c_armLength) / max(dist, 0.0001)
+		
+		var correctX = d.x*0.5*diff*stiffness
+		var correctY = d.y*0.5*diff*stiffness
+		
+		m1.x += correctX
+		m1.y += correctY
+		m2.x -= correctX
+		m2.y -= correctY
+	}
+	
+	static solveCollision = function(m){
+		var wall = instance_position(m.x, m.y, obj_collision);
+	    if (wall == noone) return;
+
+	    // Calculate the distance to each edge from the particle's position
+	    var push_left = m.x - wall.bbox_left;
+	    var push_right = m.x - wall.bbox_right;
+	    var push_top = m.y - wall.bbox_top;
+	    var push_bottom = m.y - wall.bbox_bottom;
+
+	    // Find the smallest push distance (the one with the smallest absolute value)
+	    var min_push_x = (abs(push_left) < abs(push_right)) ? push_left : push_right;
+	    var min_push_y = (abs(push_top) < abs(push_bottom)) ? push_top : push_bottom;
+
+	    // Find out if it's easier to push out horizontally or vertically
+	    if (abs(min_push_x) < abs(min_push_y)) {
+	        // Push horizontally
+	        m.x -= min_push_x;
+	    } else {
+	        // Push vertically
+	        m.y -= min_push_y;
+	    }
+	}
 }

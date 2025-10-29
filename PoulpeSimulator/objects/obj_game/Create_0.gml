@@ -1,1 +1,3 @@
-grav = 0.02
+grav = 0.2
+
+poulpe = obj_poulpe
