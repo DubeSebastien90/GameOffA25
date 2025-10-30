@@ -4,6 +4,8 @@ vspd = 0
 damp = 0.05
 stifness = 0.01
 
+collisionBuffer = 3
+
 handRepulsionStiffness = 0.05
 minHandDist = 3
 
@@ -107,17 +109,52 @@ function step(){
 	
 	
 	if place_meeting(x,y+vspd,obj_collision){
-	while!(place_meeting(x,y+sign(vspd),obj_collision)){
-		y += sign(vspd)
-	}
-	vspd = 0
+		var tempBuffer = 0
+		if(!place_meeting(x-collisionBuffer,y+vspd,obj_collision)){
+			while(place_meeting(x-tempBuffer,y+vspd, obj_collision)){
+				tempBuffer += 0.1
+				vspd *= 0.9
+			}
+			x -= tempBuffer
+		}
+		if(!place_meeting(x+collisionBuffer,y+vspd,obj_collision)){
+			while(place_meeting(x+tempBuffer,y+vspd, obj_collision)){
+				tempBuffer += 0.1
+				vspd *= 0.9
+			}
+			x += tempBuffer
+		}
+		if tempBuffer = 0{
+			while!(place_meeting(x,y+sign(vspd),obj_collision)){
+				y += sign(vspd)
+			}
+			vspd = 0
+		}
+		
 	}
 	
 	if place_meeting(x+hspd,y,obj_collision){
-	while!(place_meeting(x+sign(hspd),y,obj_collision)){
-		x += sign(hspd)
-	}
-	hspd = 0
+		var tempBuffer = 0
+		if(!place_meeting(x+hspd,y-collisionBuffer,obj_collision)){
+			while(place_meeting(x+hspd,y-tempBuffer, obj_collision)){
+				tempBuffer += 0.1
+				hspd *= 0.9
+			}
+			y -= tempBuffer
+		}
+		if(!place_meeting(x+hspd,y+collisionBuffer,obj_collision)){
+			while(place_meeting(x+hspd,y+tempBuffer, obj_collision)){
+				tempBuffer += 0.1
+				hspd *= 0.9
+			}
+			y += tempBuffer
+		}
+		if tempBuffer = 0{
+			while!(place_meeting(x+sign(hspd),y,obj_collision)){
+				x += sign(hspd)
+			}
+			hspd = 0
+		}
 	}
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision){
