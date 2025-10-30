@@ -45,7 +45,11 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"scr_force","path":"scripts/scr_force/scr_force.yy",},},
     {"id":{"name":"tentacleShader","path":"shaders/tentacleShader/tentacleShader.yy",},},
+    {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_collision","path":"sprites/spr_collision/spr_collision.yy",},},
+    {"id":{"name":"spr_coral","path":"sprites/spr_coral/spr_coral.yy",},},
+    {"id":{"name":"spr_coral1","path":"sprites/spr_coral1/spr_coral1.yy",},},
+    {"id":{"name":"spr_coral2","path":"sprites/spr_coral2/spr_coral2.yy",},},
     {"id":{"name":"spr_mass","path":"sprites/spr_mass/spr_mass.yy",},},
     {"id":{"name":"spr_poulpe","path":"sprites/spr_poulpe/spr_poulpe.yy",},},
     {"id":{"name":"spr_tentacule","path":"sprites/spr_tentacule/spr_tentacule.yy",},},
@@ -54,8 +58,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"roomId":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
+    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

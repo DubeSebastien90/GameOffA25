@@ -21,7 +21,11 @@ offsetY = 0
 initialDragX = 0
 initialDragY = 0
 
+xMagicValue = 290
+yMagicValue = 2820
 background_map = ds_map_create()
 background_map[? layer_get_id("B_NearGround")] = new force(0.1, 0.1)
 background_map[? layer_get_id("B_DistantGround")] = new force(0.2, 0.2)
 background_map[? layer_get_id("B_Foreground")] = new force(-0.5, -0.5)
+
+camOnObject = false

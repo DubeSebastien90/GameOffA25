@@ -37,11 +37,10 @@ shake_remain = max(0,shake_remain-((1/shake_lenght)*shake_magnitude));
 camera_set_view_pos(cam,x-_camW/2,y-_camH/2);
 camera_set_view_size(cam,_camW,_camH)
 
-
 var _b =ds_map_find_first(background_map)
 repeat(ds_map_size(background_map))
 {
-	layer_x(_b, background_map[? _b].x * x)
-	layer_y(_b, background_map[? _b].y * y)
+	layer_x(_b, background_map[? _b].x * (x - xMagicValue))
+	layer_y(_b, background_map[? _b].y * (y - yMagicValue))
 	_b = ds_map_find_next(background_map, _b)
 }

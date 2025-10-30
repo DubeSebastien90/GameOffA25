@@ -2,6 +2,8 @@ grav = 0.02
 
 //Debug
 showFps = false
+flyHack = false
+stayInPlace = false
 
 gameControls = [
 	"Q",
