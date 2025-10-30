@@ -129,8 +129,13 @@ function step(){
 
 function computeJoints(){
 	//joints
-	var pX = myPoulpe.x
-	var pY = myPoulpe.y
+	if (active){
+	pX = myPoulpe.x
+	pY = myPoulpe.y
+	} else{
+		pX = lerp(pX,x,0.01)
+		pY = lerp(pY,y+obj_poulpe.distParfaite*1.5,0.1)
+	}
 	var dist = point_distance(x, y, pX, pY)
 	var effectiveDist = max(dist - poulpeCirconference, 0);
 	var invDir = point_direction(pX, pY, x, y);
@@ -145,18 +150,18 @@ function computeJoints(){
 
 	temps += 10
 	for (var i = 0; i < nbJoints; i++) {
+		if active{
 		var baseOffset = dsin(temps + i * vitesseBrasEnFonctionDeVitesse) * vitesseRelative*3;
-    var weight = 1;
+		var weight = 1;
 
-    if (i < 3) {
-        weight = i / 3; // 0 → 1 sur les 3 premiers
-    } else if (i > nbJoints - 4) {
-        weight = (nbJoints - 1 - i) / 3; // 1 → 0 sur les 3 derniers
-    }
+		if (i < 3) {
+			weight = i / 3; // 0 → 1 sur les 3 premiers
+		} else if (i > nbJoints - 4) {
+			weight = (nbJoints - 1 - i) / 3; // 1 → 0 sur les 3 derniers
+		}
 
-    offset[i] = baseOffset * weight;
-
-		
+		offset[i] = baseOffset * weight;
+		} 
 		var distFromPoulpe = poulpeCirconference + _step * (i + 1);
 		var jx = pX + lengthdir_x(distFromPoulpe, invDir);
 		var jy = pY + lengthdir_y(distFromPoulpe, invDir);
