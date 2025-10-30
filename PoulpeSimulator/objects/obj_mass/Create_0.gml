@@ -29,6 +29,7 @@ for (var i = 0; i < nbJoints; i++){
 	offset[i] = 0
 }
 temps = random_range(0,360)
+vitesseBras = 10
 
 function angleEstProche(angle1, angle2, tol){
 	angle1 = angle1%360
@@ -136,9 +137,26 @@ function computeJoints(){
 	// espacement entre chaque joint
 	var _step = effectiveDist / (nbJoints + 1);
 
+	var relVx = hspd - myPoulpe.hspd;
+	var relVy = vspd - myPoulpe.vspd;
+	var vitesseRelative = sqrt(relVx * relVx + relVy * relVy);
+	var vitesseBrasEnFonctionDeVitesse = vitesseBras + vitesseRelative * 0.5;
+
+
 	temps += 10
 	for (var i = 0; i < nbJoints; i++) {
-		offset[i] = dsin(temps+i*20) * 5
+		var baseOffset = dsin(temps + i * vitesseBrasEnFonctionDeVitesse) * vitesseRelative*3;
+    var weight = 1;
+
+    if (i < 3) {
+        weight = i / 3; // 0 → 1 sur les 3 premiers
+    } else if (i > nbJoints - 4) {
+        weight = (nbJoints - 1 - i) / 3; // 1 → 0 sur les 3 derniers
+    }
+
+    offset[i] = baseOffset * weight;
+
+		
 		var distFromPoulpe = poulpeCirconference + _step * (i + 1);
 		var jx = pX + lengthdir_x(distFromPoulpe, invDir);
 		var jy = pY + lengthdir_y(distFromPoulpe, invDir);

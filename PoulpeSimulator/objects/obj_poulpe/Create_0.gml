@@ -47,6 +47,8 @@ function handleHands(controls){
 				hand.grabbing = true;
 				hand.myCollision = wall;
 				handsGrabbing += 1;
+				hand.vspd = 0
+				hand.hspd = 0
 			}
 		} else{
 			if hand.grabbing == true{
