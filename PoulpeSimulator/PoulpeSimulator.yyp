@@ -2,7 +2,7 @@
   "$GMProject":"v1",
   "%Name":"PoulpeSimulator",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -31,7 +31,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.1.193",
+    "IDEVersion":"2024.14.0.207",
   },
   "name":"PoulpeSimulator",
   "resources":[
@@ -65,14 +65,15 @@
     {"id":{"name":"spr_eye","path":"sprites/spr_eye/spr_eye.yy",},},
     {"id":{"name":"spr_mass","path":"sprites/spr_mass/spr_mass.yy",},},
     {"id":{"name":"spr_poulpe","path":"sprites/spr_poulpe/spr_poulpe.yy",},},
+    {"id":{"name":"spr_squid","path":"sprites/spr_squid/spr_squid.yy",},},
     {"id":{"name":"tex_tentacle","path":"sprites/tex_tentacle/tex_tentacle.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
-    {"roomId":{"name":"rm_test_collision","path":"rooms/rm_test_collision/rm_test_collision.yy",},},
     {"roomId":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
+    {"roomId":{"name":"rm_test_collision","path":"rooms/rm_test_collision/rm_test_collision.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

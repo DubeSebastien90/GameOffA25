@@ -1,7 +1,7 @@
-draw_self()
+draw_sprite_ext(spr_squid, 0, x - 4, y - 2.4, 0.065, 0.065, 0, c_white, 1)
 
 
-//eyes
+/*//eyes
 var eyeDist = 0.8
 
 var pLEyeX = x - 3.5

@@ -33,9 +33,12 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
+    "name":"spr_squid",
+    "path":"sprites/spr_squid/spr_squid.yy",
+  },
+  "spriteMaskId":{
     "name":"spr_poulpe",
     "path":"sprites/spr_poulpe/spr_poulpe.yy",
   },
-  "spriteMaskId":null,
   "visible":true,
 }

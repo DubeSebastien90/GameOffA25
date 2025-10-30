@@ -42,6 +42,7 @@
     {"name":"spr_eye","order":8,"path":"sprites/spr_eye/spr_eye.yy",},
     {"name":"spr_mass","order":1,"path":"sprites/spr_mass/spr_mass.yy",},
     {"name":"spr_poulpe","order":2,"path":"sprites/spr_poulpe/spr_poulpe.yy",},
+    {"name":"spr_squid","order":11,"path":"sprites/spr_squid/spr_squid.yy",},
     {"name":"tex_tentacle","order":9,"path":"sprites/tex_tentacle/tex_tentacle.yy",},
   ],
 }

@@ -28,9 +28,11 @@ nbJoints = 10
 
 c_root_width = 10
 c_tip_width = 1
-c_wobbleAmplitude = 50
-c_wobbleSpeed = 0.01
-c_wobblePhase = 1
+c_wobbleAmplitude = 4
+c_wobbleSpeed = 0.005
+c_wobblePhase = 0.3
+randomise()
+wobbleSeed = random(1000)
 
 for (var i = 0; i < nbJoints; i++){
 	joints[i] = new force(0,0)
