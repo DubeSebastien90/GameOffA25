@@ -1,4 +1,4 @@
-hspd = 0
-vspd = 0
-frct = 0
+// Inherit the parent event
+event_inherited();
+
 grab = false

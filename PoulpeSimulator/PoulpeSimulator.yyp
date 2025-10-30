@@ -45,6 +45,7 @@
     {"id":{"name":"obj_poulpe","path":"objects/obj_poulpe/obj_poulpe.yy",},},
     {"id":{"name":"obj_son","path":"objects/obj_son/obj_son.yy",},},
     {"id":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
+    {"id":{"name":"rm_test_collision","path":"rooms/rm_test_collision/rm_test_collision.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"id":{"name":"scr_force","path":"scripts/scr_force/scr_force.yy",},},
     {"id":{"name":"screenShake","path":"scripts/screenShake/screenShake.yy",},},
@@ -67,6 +68,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
+    {"roomId":{"name":"rm_test_collision","path":"rooms/rm_test_collision/rm_test_collision.yy",},},
     {"roomId":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
   ],
   "templateType":"game",

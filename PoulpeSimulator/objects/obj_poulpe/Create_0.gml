@@ -71,9 +71,6 @@ function handleHands(controls){
 				var distHand = point_distance(x,y,hand.x,hand.y)
 				if distHand > distParfaite{
 					var puissance = stifnessAir*(distHand-(distParfaite))
-					if stifnessWall*puissance/stifnessAir > forceMaxArms{
-						briserBras(i)
-					}
 					var dirHand = point_direction(x,y,hand.x, hand.y)
 					centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 				}
@@ -135,28 +132,94 @@ function handleHands(controls){
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){
 		y += sign(vspd)
 	}
-	//var angle = calculateAngle()
+	var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
+	var nx = dcos(normal_angle);
+	var ny = dsin(normal_angle);
+
+	var dot = hspd*nx + vspd*ny;
+
+	var b = 0.8; // rebond 80%
+	hspd += (1 + b)*dot*nx;
 	vspd = 0
 	}
 	
 	if place_meeting(x+hspd,y,obj_collision){
+	var collision = instance_place(x+hspd, y, obj_collision);
 	while!(place_meeting(x+sign(hspd),y,obj_collision)){
 		x += sign(hspd)
 	}
+	var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
+	var nx = dcos(normal_angle);
+	var ny = dsin(normal_angle);
+
+	var dot = hspd*nx + vspd*ny;
+
+	var b = 0.8; // rebond 80%
 	hspd = 0
+	vspd += (1 + b)*dot*ny;
 	}
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision){
-	while!(place_meeting(x+sign(hspd),y+sign(vspd),obj_collision)){
-		x += sign(hspd)
-		y += sign(vspd)
-	}
-	hspd = 0
-	vspd = 0
+		hspd = 0
+		vspd = 0
 	}
 	
 	x += hspd
 	y += vspd
+}
+
+function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter){
+	// Direction from center of rectangle to the collision point
+    var dirToPoulpe = point_direction(collisionCenter.x, collisionCenter.y, poulpeX, poulpeY);
+
+    // Angles from center to each corner
+    var angP1 = point_direction(collisionCenter.x, collisionCenter.y, p1.x, p1.y);
+    var angP2 = point_direction(collisionCenter.x, collisionCenter.y, p2.x, p2.y);
+    var angP3 = point_direction(collisionCenter.x, collisionCenter.y, p3.x, p3.y);
+    var angP4 = point_direction(collisionCenter.x, collisionCenter.y, p4.x, p4.y);
+	
+	// Normalize angles to 0–360
+    angP1 = (angP1 + 360) mod 360;
+    angP2 = (angP2 + 360) mod 360;
+    angP3 = (angP3 + 360) mod 360;
+    angP4 = (angP4 + 360) mod 360;
+    dirToPoulpe = (dirToPoulpe + 360) mod 360;
+	
+	// Helper for testing if an angle is between two others (circularly)
+    function angle_in_range(a, _min, _max) {
+        var diff1 = angle_difference(_min, a);
+        var diff2 = angle_difference(a, _max);
+        return (diff1 >= 0 && diff2 >= 0);
+    }
+	
+	var normal_angle;
+
+    // --- Check which side we hit ---
+    if (angle_in_range(dirToPoulpe, angP1, angP2)) {
+        // Top edge (p1 → p2)
+        var edge_angle = point_direction(p1.x, p1.y, p2.x, p2.y);
+        normal_angle = edge_angle - 90;
+    }
+    else if (angle_in_range(dirToPoulpe, angP2, angP4)) {
+        // Right edge (p2 → p4)
+        var edge_angle = point_direction(p2.x, p2.y, p4.x, p4.y);
+        normal_angle = edge_angle - 90;
+    }
+    else if (angle_in_range(dirToPoulpe, angP4, angP3)) {
+        // Bottom edge (p4 → p3)
+        var edge_angle = point_direction(p4.x, p4.y, p3.x, p3.y);
+        normal_angle = edge_angle - 90;
+    }
+    else {
+        // Left edge (p3 → p1)
+        var edge_angle = point_direction(p3.x, p3.y, p1.x, p1.y);
+        normal_angle = edge_angle - 90;
+    }
+
+    // Normalize angle
+    normal_angle = (normal_angle + 180) mod 360;
+
+    return normal_angle;
 }
 
 function briserBras(index){
