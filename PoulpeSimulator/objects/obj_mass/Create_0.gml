@@ -27,15 +27,15 @@ nbJoints = 10
 //shaders shit
 add = 0.2
 
-u_pixelH_Wave = shader_get_uniform(tentacleShader,"pixelH")
-u_pixelW_Wave = shader_get_uniform(tentacleShader,"pixelW")
+u_spriteW = shader_get_uniform(tentacleShader,"u_spriteW")
+u_spriteH = shader_get_uniform(tentacleShader,"u_spriteH")
 u_springs = shader_get_uniform(tentacleShader,"springs")
 u_springCount = shader_get_uniform(tentacleShader,"springCount")
-u_perpDirX = shader_get_uniform(tentacleShader, "u_perpDirX")
-u_perpDirY = shader_get_uniform(tentacleShader, "u_perpDirY")
+u_perpX = shader_get_uniform(tentacleShader, "u_perpX")
+u_perpY = shader_get_uniform(tentacleShader, "u_perpY")
 
 tempSurface = -1;
-maxOffset = 50;
+maxOffset = 100;
 
 for (var i = 0; i < nbJoints; i++){
 	joints[i] = new force(0,0)

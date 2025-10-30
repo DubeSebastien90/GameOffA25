@@ -16,47 +16,28 @@ for (var i = 0; i < array_length(joints); i++) {
     draw_sprite_ext(spr_mass, 0, drawX, drawY, 0.5, 0.5, 0, c_white, 1);
 }
 
-// --- 1️⃣ Calcul de la direction et vecteur perpendiculaire ---
-var rad = degtorad(dir);
-var perpX = -sin(rad);
-var perpY = cos(rad);
 
-// --- 2️⃣ Création / mise à jour de la surface temporaire ---
-var surfWidth = sprite_get_width(spr_tentacule);
-var surfHeight = sprite_get_height(spr_tentacule) + maxOffset;
+var perpX = lengthdir_x(1, dir + 90);
+var perpY = lengthdir_y(1, dir + 90);
 
-if (!surface_exists(tempSurface) || 
-    surface_get_width(tempSurface) != surfWidth || 
-    surface_get_height(tempSurface) != surfHeight)
-{
-    if (surface_exists(tempSurface)) surface_free(tempSurface);
-    tempSurface = surface_create(surfWidth, surfHeight);
-}
+// Uniformes
+var nbJoints = array_length(offset);
+var pW = sprite_get_width(spr_tentacule);
+var pH = sprite_get_height(spr_tentacule);
 
-// --- 3️⃣ Dessiner le sprite sur la surface avec shader ---
-surface_set_target(tempSurface);
-draw_clear_alpha(c_black, 0); // fond transparent
-
-// positionner le sprite à la base de la surface
-var drawX = 0;
-var drawY = surfHeight - sprite_get_height(spr_tentacule);
-
+// === Appliquer le shader ===
 shader_set(tentacleShader);
-shader_set_uniform_f(u_pixelH_Wave, sprite_get_height(spr_tentacule));
-shader_set_uniform_f(u_pixelW_Wave, sprite_get_width(spr_tentacule));
+
+// transmettre les données
+shader_set_uniform_f(u_spriteW, pW);
+shader_set_uniform_f(u_spriteH, pH);
 shader_set_uniform_f(u_springCount, nbJoints);
 shader_set_uniform_f_array(u_springs, offset);
-shader_set_uniform_f(u_perpDirX, perpX);
-shader_set_uniform_f(u_perpDirY, perpY);
+shader_set_uniform_f(u_perpX, perpX);
+shader_set_uniform_f(u_perpY, perpY);
 
-draw_sprite(spr_tentacule, 0, drawX, drawY);
+// === Dessiner le sprite avec rotation ===
+draw_sprite_ext(spr_tentacule, 0, x, y, 1, 1, dir, c_white, 1);
 
+// reset
 shader_reset();
-surface_reset_target();
-
-// --- 4️⃣ Dessiner la surface sur l’écran avec rotation ---
-draw_surface_ext(tempSurface,
-                 myPoulpe.x, myPoulpe.y, // position base du tentacule
-                 1, 1,                     // scale
-                 dir,                       // rotation
-                 c_white, 1);               // couleur + alpha
