@@ -71,6 +71,9 @@ function handleHands(controls){
 				var distHand = point_distance(x,y,hand.x,hand.y)
 				if distHand > distParfaite{
 					var puissance = stifnessAir*(distHand-(distParfaite))
+					if stifnessWall*puissance/stifnessAir > forceMaxArms{
+						briserBras(i)
+					}
 					var dirHand = point_direction(x,y,hand.x, hand.y)
 					centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
 				}
