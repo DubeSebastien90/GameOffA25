@@ -21,7 +21,7 @@ puissanceTest = 0
 
 index = 0
 
-poulpeCirconference = 5
+poulpeCirconference = 0
 nbJoints = 10
 
 

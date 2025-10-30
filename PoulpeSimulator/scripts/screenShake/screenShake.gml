@@ -1,5 +1,5 @@
 
-function screenShake(_magnitude, _length)constructor{
+function screenShake(_magnitude, _length){
 
 with (obj_camera)
 {

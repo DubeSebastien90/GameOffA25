@@ -158,4 +158,5 @@ function briserBras(index){
 		handsGrabbing -= 1
 	}
 	hands[index]._index = 2
+	screenShake(5,10)
 }
