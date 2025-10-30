@@ -24,18 +24,6 @@ index = 0
 poulpeCirconference = 5
 nbJoints = 10
 
-//shaders shit
-add = 0.2
-
-u_spriteW = shader_get_uniform(tentacleShader,"u_spriteW")
-u_spriteH = shader_get_uniform(tentacleShader,"u_spriteH")
-u_springs = shader_get_uniform(tentacleShader,"springs")
-u_springCount = shader_get_uniform(tentacleShader,"springCount")
-u_perpX = shader_get_uniform(tentacleShader, "u_perpX")
-u_perpY = shader_get_uniform(tentacleShader, "u_perpY")
-
-tempSurface = -1;
-maxOffset = 100;
 
 for (var i = 0; i < nbJoints; i++){
 	joints[i] = new force(0,0)

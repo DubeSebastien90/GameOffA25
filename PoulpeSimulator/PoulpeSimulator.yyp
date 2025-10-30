@@ -44,7 +44,6 @@
     {"id":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"scr_force","path":"scripts/scr_force/scr_force.yy",},},
-    {"id":{"name":"tentacleShader","path":"shaders/tentacleShader/tentacleShader.yy",},},
     {"id":{"name":"spr_collision","path":"sprites/spr_collision/spr_collision.yy",},},
     {"id":{"name":"spr_mass","path":"sprites/spr_mass/spr_mass.yy",},},
     {"id":{"name":"spr_poulpe","path":"sprites/spr_poulpe/spr_poulpe.yy",},},
