@@ -1,6 +1,7 @@
 nbHands = 5
 hands = []
 distParfaite = 30
+distMax = 80
 poulpeMasse = 10
 handMasse = 0.5
 
@@ -37,7 +38,7 @@ function handleHands(controls){
 		if !hand.active{
 			if hand.grabbing{
 				hand.handleMovingBlocks()
-			}
+			} else hand.step()
 			continue
 		}
 		
@@ -62,13 +63,15 @@ function handleHands(controls){
 		if !hand.grabbing{
 			hand._index = 0
 			var mouseDir = point_direction(hand.x,hand.y,mouse_x,mouse_y)
+			var distHand = point_distance(x,y,hand.x,hand.y)
 			hand.mouseForce.x = dcos(mouseDir)*mousePower
 			hand.mouseForce.y = -dsin(mouseDir)*mousePower
-			
+			if distHand > distMax{
+				briserBras(i)
+			}
 			hand.step() //a la fin de step - la main a bougé
 			//ajouter force sur pieuvre si je grab
 			if handsGrabbing != 0{
-				var distHand = point_distance(x,y,hand.x,hand.y)
 				if distHand > distParfaite{
 					var puissance = stifnessAir*(distHand-(distParfaite))
 					var dirHand = point_direction(x,y,hand.x, hand.y)
@@ -82,7 +85,7 @@ function handleHands(controls){
 			var distHand = point_distance(x,y,hand.x,hand.y)
 			if distHand > distParfaite{
 				var puissance = stifnessWall*(distHand-(distParfaite))
-				if puissance > forceMaxArms{
+				if distHand > distMax{
 					briserBras(i)
 				}
 				if puissance < 0{

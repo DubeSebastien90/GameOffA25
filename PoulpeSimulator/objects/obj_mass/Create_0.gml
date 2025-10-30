@@ -90,6 +90,10 @@ function step(){
 	
 	allForces = handRepulsionForce.add_force(poulpeForce.add_force(gravForce.add_force(mouseForce)))
 	
+	if (!active){
+		allForces = gravForce
+	}
+	
 	var nonlinearDamp = damp * (1 + 0.1 * spd);
 	frictionForce = new force(nonlinearDamp * hspd, nonlinearDamp * vspd);
 	
@@ -224,17 +228,17 @@ function nearWall() {
         wall = instance_place(x + radius, y, obj_collision);
 		}
     }
-    else if (place_meeting(x - radius, y, obj_collision)) {
+    if (place_meeting(x - radius, y, obj_collision)) {
 		if(instance_place(x - radius, y, obj_collision).grab){
         wall = instance_place(x - radius, y, obj_collision);
 		}
     }
-    else if (place_meeting(x, y + radius, obj_collision)) {
+    if (place_meeting(x, y + radius, obj_collision)) {
 		if (instance_place(x, y + radius, obj_collision).grab){
         wall = instance_place(x, y + radius, obj_collision);
 		}
     }
-    else if (place_meeting(x, y - radius, obj_collision)) {
+    if (place_meeting(x, y - radius, obj_collision)) {
 		if(instance_place(x, y - radius, obj_collision).grab){
         wall = instance_place(x, y - radius, obj_collision);
 		}
