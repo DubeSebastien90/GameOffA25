@@ -1,5 +1,7 @@
 grav = 0.02
 
+//Debug
+showFps = false
 
 gameControls = [
 	"Q",

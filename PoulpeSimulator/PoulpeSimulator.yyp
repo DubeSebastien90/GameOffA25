@@ -47,6 +47,7 @@
     {"id":{"name":"spr_collision","path":"sprites/spr_collision/spr_collision.yy",},},
     {"id":{"name":"spr_mass","path":"sprites/spr_mass/spr_mass.yy",},},
     {"id":{"name":"spr_poulpe","path":"sprites/spr_poulpe/spr_poulpe.yy",},},
+    {"id":{"name":"Sprite4","path":"sprites/Sprite4/Sprite4.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
