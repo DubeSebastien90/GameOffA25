@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_tentacule",
+    "path":"sprites/spr_tentacule/spr_tentacule.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
