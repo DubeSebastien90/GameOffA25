@@ -49,10 +49,12 @@ function handleHands(controls){
 				handsGrabbing += 1;
 				hand.vspd = 0
 				hand.hspd = 0
+				obj_son.play_sound(snd_boup,0.1)
 			}
 		} else{
 			if hand.grabbing == true{
 				handsGrabbing -= 1
+				obj_son.play_sound(snd_pop,0.1)
 			}
 			hand.myCollision = noone
 			hand.grabbing = false
@@ -159,4 +161,5 @@ function briserBras(index){
 	}
 	hands[index]._index = 2
 	screenShake(5,10)
+	obj_son.play_sound(snd_tentacleRippOff,0.1)
 }
