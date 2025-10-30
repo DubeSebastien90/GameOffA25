@@ -117,14 +117,14 @@ function step(){
 		if(!place_meeting(x-collisionBuffer,y+vspd,obj_collision)){
 			while(place_meeting(x-tempBuffer,y+vspd, obj_collision)){
 				tempBuffer += 0.1
-				vspd *= 0.9
+				vspd *= 0.95
 			}
 			x -= tempBuffer
 		}
 		if(!place_meeting(x+collisionBuffer,y+vspd,obj_collision)){
 			while(place_meeting(x+tempBuffer,y+vspd, obj_collision)){
 				tempBuffer += 0.1
-				vspd *= 0.9
+				vspd *= 0.95
 			}
 			x += tempBuffer
 		}
@@ -142,14 +142,14 @@ function step(){
 		if(!place_meeting(x+hspd,y-collisionBuffer,obj_collision)){
 			while(place_meeting(x+hspd,y-tempBuffer, obj_collision)){
 				tempBuffer += 0.1
-				hspd *= 0.9
+				hspd *= 0.95
 			}
 			y -= tempBuffer
 		}
 		if(!place_meeting(x+hspd,y+collisionBuffer,obj_collision)){
 			while(place_meeting(x+hspd,y+tempBuffer, obj_collision)){
 				tempBuffer += 0.1
-				hspd *= 0.9
+				hspd *= 0.95
 			}
 			y += tempBuffer
 		}

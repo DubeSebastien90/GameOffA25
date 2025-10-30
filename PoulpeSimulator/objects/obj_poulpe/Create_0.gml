@@ -18,6 +18,9 @@ controls = [0,0,0,0,0]
 handsGrabbing = 0;
 forceMaxArms = 0.8
 
+//sons
+fondMarinJoue = false
+
 for (var i = 0; i < nbHands; i++){
 	hand = instance_create_layer(x + (-2+i)*10, y+25,"physics",obj_mass)
 	with (hand){
@@ -120,6 +123,12 @@ function handleHands(controls){
 	
 	hspd += allForces.x
 	vspd += allForces.y
+	
+	if(point_distance(0,0,allForces.x,allForces.y) > 0.1) && !fondMarinJoue{
+		fondMarinJoue = true
+		alarm[0] = 60
+		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
+	}
 	
 	var inst = instance_place(x, y, obj_collision_mouvante);
 
