@@ -22,8 +22,21 @@ puissanceTest = 0
 index = 0
 
 poulpeCirconference = 5
-
 nbJoints = 10
+
+//shaders shit
+add = 0.2
+
+u_pixelH_Wave = shader_get_uniform(tentacleShader,"pixelH")
+u_pixelW_Wave = shader_get_uniform(tentacleShader,"pixelW")
+u_springs = shader_get_uniform(tentacleShader,"springs")
+u_springCount = shader_get_uniform(tentacleShader,"springCount")
+u_perpDirX = shader_get_uniform(tentacleShader, "u_perpDirX")
+u_perpDirY = shader_get_uniform(tentacleShader, "u_perpDirY")
+
+tempSurface = -1;
+maxOffset = 50;
+
 for (var i = 0; i < nbJoints; i++){
 	joints[i] = new force(0,0)
 	offset[i] = 0

@@ -26,6 +26,7 @@
     {"name":"scr_force","order":3,"path":"scripts/scr_force/scr_force.yy",},
     {"name":"spr_mass","order":1,"path":"sprites/spr_mass/spr_mass.yy",},
     {"name":"spr_poulpe","order":2,"path":"sprites/spr_poulpe/spr_poulpe.yy",},
+    {"name":"spr_tentacule","order":4,"path":"sprites/spr_tentacule/spr_tentacule.yy",},
     {"name":"Sprite4","order":3,"path":"sprites/Sprite4/Sprite4.yy",},
   ],
 }
