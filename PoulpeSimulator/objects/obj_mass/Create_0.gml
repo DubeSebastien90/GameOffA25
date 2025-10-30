@@ -24,6 +24,11 @@ index = 0
 poulpeCirconference = 0
 nbJoints = 10
 
+c_root_width = 10
+c_tip_width = 1
+c_wobbleAmplitude = 50
+c_wobbleSpeed = 0.01
+c_wobblePhase = 1
 
 for (var i = 0; i < nbJoints; i++){
 	joints[i] = new force(0,0)
@@ -171,8 +176,6 @@ function computeJoints(){
 		joints[i] = { x: jx, y: jy };
 	}
 }
-
-
 
 function nearWall() {
     var radius = 2; // 🔧 distance autour de la main
