@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"tentacleShader",
-  "name":"tentacleShader",
+  "%Name":"shd_tentacle",
+  "name":"shd_tentacle",
   "parent":{
     "name":"Shaders",
     "path":"folders/Shaders.yy",
