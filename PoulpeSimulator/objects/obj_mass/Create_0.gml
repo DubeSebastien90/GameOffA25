@@ -183,16 +183,24 @@ function nearWall() {
 
     // 🔹 Vérifie les 4 directions cardinales
     if (place_meeting(x + radius, y, obj_collision)) {
+		if(instance_place(x + radius, y, obj_collision).grab){
         wall = instance_place(x + radius, y, obj_collision);
+		}
     }
     else if (place_meeting(x - radius, y, obj_collision)) {
+		if(instance_place(x - radius, y, obj_collision).grab){
         wall = instance_place(x - radius, y, obj_collision);
+		}
     }
     else if (place_meeting(x, y + radius, obj_collision)) {
+		if (instance_place(x, y + radius, obj_collision).grab){
         wall = instance_place(x, y + radius, obj_collision);
+		}
     }
     else if (place_meeting(x, y - radius, obj_collision)) {
+		if(instance_place(x, y - radius, obj_collision).grab){
         wall = instance_place(x, y - radius, obj_collision);
+		}
     }
 
     return wall;

@@ -128,9 +128,11 @@ function handleHands(controls){
 	}
 	
 	if place_meeting(x,y+vspd,obj_collision){
+	var collision = instance_place(x, y+vspd, obj_collision);
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){
 		y += sign(vspd)
 	}
+	//var angle = calculateAngle()
 	vspd = 0
 	}
 	

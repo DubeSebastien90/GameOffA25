@@ -1,18 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"obj_collision",
+  "%Name":"obj_collision_noGrab",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_collision",
+  "name":"obj_collision_noGrab",
   "overriddenProperties":[],
   "parent":{
     "name":"Objets",
     "path":"folders/Objets.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_collision",
+    "path":"objects/obj_collision/obj_collision.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -31,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_collision",
-    "path":"sprites/spr_collision/spr_collision.yy",
+    "name":"spr_collision_no_grab",
+    "path":"sprites/spr_collision_no_grab/spr_collision_no_grab.yy",
   },
   "spriteMaskId":null,
   "visible":true,

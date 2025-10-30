@@ -1,3 +1,5 @@
+draw_self()
+
 var n = array_length(joints);
 if (n < 2) exit;
 
