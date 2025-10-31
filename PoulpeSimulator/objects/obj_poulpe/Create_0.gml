@@ -120,6 +120,10 @@ function handleHands(controls){
 		tempDamp = dampGrabb
 	}
 	
+	if place_meeting(x,y+1,obj_collision_noGrab){
+		tempDamp = 0
+	}
+	
 	allForces = centreMasseForce.add_force(gravForce)
 
 	
@@ -153,35 +157,47 @@ function handleHands(controls){
 		var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
 		var nx = lengthdir_x(1, normal_angle); // normal x
 		var ny = lengthdir_y(1, normal_angle); // normal y
-		
-		show_debug_message("nx:" + string(nx))
-		show_debug_message("ny:" + string(ny))
-		
-		var dot_n = hspd * nx + vspd * ny;
 
-		hspd -= dot_n * nx;
-		vspd -= dot_n * ny;
+		
+		var totalSpd = point_distance(0,0,hspd,vspd)
+		var tanAngle = normal_angle + 90
+		
+		var dirSpd = point_direction(0, 0, hspd, vspd);
+		
+		var tanDot = dcos(dirSpd - tanAngle);
+		
+		if (tanDot < 0)
+			tanAngle += 180;
+		hspd = lengthdir_x(totalSpd, tanAngle);
+		vspd = lengthdir_y(totalSpd, tanAngle);
 	} else{
 	
 	if place_meeting(x,y+vspd,obj_collision){
 	var collision = instance_place(x, y+vspd, obj_collision);
+	if collision.grab{
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){
 		y += sign(vspd)
 	}
 	vspd = 0
 	}
+	}
 	
 	if place_meeting(x+hspd,y,obj_collision){
 	var collision = instance_place(x+hspd, y, obj_collision);
+	if collision.grab{
 	while!(place_meeting(x+sign(hspd),y,obj_collision)){
 		x += sign(hspd)
 	}
 	hspd = 0
 	}
+	}
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision){
+		var collision = instance_place(x+hspd,y+vspd,obj_collision)
+		if collision.grab{
 		hspd = 0
 		vspd = 0
+		}
 	}
 	}
 	
