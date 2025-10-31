@@ -2,6 +2,7 @@ nbHands = 5
 hands = []
 distParfaite = 30
 distMax = 80
+distMaxNoGrab = 110
 poulpeMasse = 10
 handMasse = 0.5
 
@@ -76,7 +77,7 @@ function handleHands(controls){
 			var distHand = point_distance(x,y,hand.x,hand.y)
 			hand.mouseForce.x = dcos(mouseDir)*mousePower
 			hand.mouseForce.y = -dsin(mouseDir)*mousePower
-			if distHand > distMax{
+			if distHand > distMaxNoGrab{
 				briserBras(i)
 			}
 			hand.step() //a la fin de step - la main a bougé
