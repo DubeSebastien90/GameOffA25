@@ -147,19 +147,27 @@ function handleHands(controls){
 		}
 	}
 	
+	
+	if place_meeting(x+hspd,y+vspd,obj_collision_noGrab){
+		var collision = instance_place(x+hspd,y+vspd,obj_collision_noGrab)
+		var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
+		var nx = lengthdir_x(1, normal_angle); // normal x
+		var ny = lengthdir_y(1, normal_angle); // normal y
+		
+		show_debug_message("nx:" + string(nx))
+		show_debug_message("ny:" + string(ny))
+		
+		var dot_n = hspd * nx + vspd * ny;
+
+		hspd -= dot_n * nx;
+		vspd -= dot_n * ny;
+	} else{
+	
 	if place_meeting(x,y+vspd,obj_collision){
 	var collision = instance_place(x, y+vspd, obj_collision);
 	while!(place_meeting(x,y+sign(vspd),obj_collision)){
 		y += sign(vspd)
 	}
-	var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
-	var nx = dcos(normal_angle);
-	var ny = dsin(normal_angle);
-
-	var dot = hspd*nx + vspd*ny;
-
-	var b = 0.8; // rebond 80%
-	hspd += (1 + b)*dot*nx;
 	vspd = 0
 	}
 	
@@ -168,20 +176,13 @@ function handleHands(controls){
 	while!(place_meeting(x+sign(hspd),y,obj_collision)){
 		x += sign(hspd)
 	}
-	var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
-	var nx = dcos(normal_angle);
-	var ny = dsin(normal_angle);
-
-	var dot = hspd*nx + vspd*ny;
-
-	var b = 0.8; // rebond 80%
 	hspd = 0
-	vspd += (1 + b)*dot*ny;
 	}
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision){
 		hspd = 0
 		vspd = 0
+	}
 	}
 	
 	x += hspd
