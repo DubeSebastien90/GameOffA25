@@ -56,6 +56,7 @@
     {"id":{"name":"snd_sous_marin2","path":"sounds/snd_sous_marin2/snd_sous_marin2.yy",},},
     {"id":{"name":"snd_sous_marin3","path":"sounds/snd_sous_marin3/snd_sous_marin3.yy",},},
     {"id":{"name":"snd_tentacleRippOff","path":"sounds/snd_tentacleRippOff/snd_tentacleRippOff.yy",},},
+    {"id":{"name":"hbx_squid","path":"sprites/hbx_squid/hbx_squid.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_bucket","path":"sprites/spr_bucket/spr_bucket.yy",},},
     {"id":{"name":"spr_collision_no_grab","path":"sprites/spr_collision_no_grab/spr_collision_no_grab.yy",},},

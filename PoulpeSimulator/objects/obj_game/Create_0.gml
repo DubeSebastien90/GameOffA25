@@ -4,6 +4,7 @@ grav = 0.02
 showFps = false
 flyHack = false
 stayInPlace = false
+showHbx = false
 
 gameControls = [
 	"Q",

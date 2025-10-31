@@ -37,8 +37,8 @@
     "path":"sprites/spr_squid/spr_squid.yy",
   },
   "spriteMaskId":{
-    "name":"spr_poulpe",
-    "path":"sprites/spr_poulpe/spr_poulpe.yy",
+    "name":"hbx_squid",
+    "path":"sprites/hbx_squid/hbx_squid.yy",
   },
   "visible":true,
 }

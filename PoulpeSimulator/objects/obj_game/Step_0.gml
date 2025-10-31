@@ -37,3 +37,5 @@ if flyHack {
 
 if keyboard_check_pressed(vk_f3){stayInPlace = !stayInPlace}
 if stayInPlace {obj_poulpe.x = obj_poulpe.xstart; obj_poulpe.y = obj_poulpe.ystart}
+
+if keyboard_check_pressed(vk_f4){obj_poulpe.showHbx = !obj_poulpe.showHbx}

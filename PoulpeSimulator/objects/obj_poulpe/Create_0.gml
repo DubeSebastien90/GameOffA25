@@ -25,6 +25,9 @@ drawXScale = baseXScale
 //sons
 fondMarinJoue = false
 
+//debug
+showHbx = false
+
 for (var i = 0; i < nbHands; i++){
 	hand = instance_create_layer(x + (-2+i)*10, y+25,"physics",obj_mass)
 	with (hand){

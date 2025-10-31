@@ -1,30 +1,13 @@
+if showHbx {draw_sprite(hbx_squid, 0, x, y); exit}
+
 if (hspd > 0.2){
 	targetXScale = baseXScale
 } else if (hspd < -0.2){
 	targetXScale = -baseXScale
 }
-drawXScale = clamp(lerp(drawXScale, targetXScale, abs(hspd)/6), -0.065, 0.065)
+var lerpSpd = (abs(hspd)/6) + 0.15
+lerpSpd = clamp(lerpSpd, 0.0, 1.0)
+
+drawXScale = (lerp(drawXScale, targetXScale,lerpSpd))
 
 draw_sprite_ext(spr_squid, 0, x - sign(targetXScale)*3, y - 4, drawXScale, 0.065, 0, c_white, 1)
-
-/*//eyes
-var eyeDist = 0.8
-
-var pLEyeX = x - 3.5
-var pLEyeY = y +0.5
-
-var lDir = point_direction(pLEyeX,pLEyeY,mouse_x,mouse_y)
-
-pLEyeX += dcos(lDir)*eyeDist
-pLEyeY -= dsin(lDir)*eyeDist
-
-var pREyeX = x + 3.5
-var pREyeY = y +0.5
-
-var rDir = point_direction(pREyeX,pREyeY,mouse_x,mouse_y)
-
-pREyeX += dcos(rDir)*eyeDist
-pREyeY -= dsin(rDir)*eyeDist
-
-draw_sprite(spr_eye,0,pLEyeX,pLEyeY)
-draw_sprite(spr_eye,0,pREyeX,pREyeY)
