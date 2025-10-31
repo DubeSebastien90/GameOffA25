@@ -18,6 +18,10 @@ controls = [0,0,0,0,0]
 handsGrabbing = 0;
 forceMaxArms = 0.8
 
+baseXScale = 0.065
+targetXScale = baseXScale
+drawXScale = baseXScale
+
 //sons
 fondMarinJoue = false
 

@@ -1,5 +1,11 @@
-draw_sprite_ext(spr_squid, 0, x - 4, y - 2.4, 0.065, 0.065, 0, c_white, 1)
+if (hspd > 0.2){
+	targetXScale = baseXScale
+} else if (hspd < -0.2){
+	targetXScale = -baseXScale
+}
+drawXScale = clamp(lerp(drawXScale, targetXScale, abs(hspd)/6), -0.065, 0.065)
 
+draw_sprite_ext(spr_squid, 0, x - sign(targetXScale)*3, y - 4, drawXScale, 0.065, 0, c_white, 1)
 
 /*//eyes
 var eyeDist = 0.8
