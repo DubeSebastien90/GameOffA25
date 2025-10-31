@@ -203,6 +203,15 @@ function handleHands(controls){
 	
 	x += hspd
 	y += vspd
+	
+	inst = instance_place(x, y, obj_collision_mouvante);
+	
+	if (inst != noone) {
+		while (place_meeting(x, y, obj_collision_mouvante)) {
+			x += sign(inst.hspd);
+			y += sign(inst.vspd)
+		}
+	}
 }
 
 function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter){

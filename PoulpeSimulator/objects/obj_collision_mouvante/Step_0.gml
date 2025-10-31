@@ -1,7 +1,8 @@
 temps += 3*vitesse
+phasePoisson += 2
 
 hspd = Xrange*dsin(temps)*vitesse
-vspd = Yrange*dsin(temps)*vitesse
+vspd = Yrange*dsin(temps)*vitesse + rangePoisson*dsin(phasePoisson)
 
 x += hspd
 y += vspd
