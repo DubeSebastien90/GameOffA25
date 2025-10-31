@@ -10,4 +10,4 @@ lerpSpd = clamp(lerpSpd, 0.0, 1.0)
 
 drawXScale = (lerp(drawXScale, targetXScale,lerpSpd))
 
-draw_sprite_ext(spr_squid, 0, x - sign(targetXScale)*3, y - 4, drawXScale, 0.065, 0, c_white, 1)
+draw_sprite_ext(spr_squid, 1, x - sign(targetXScale)*3, y - 4, drawXScale, 0.065, 0, c_white, 1)

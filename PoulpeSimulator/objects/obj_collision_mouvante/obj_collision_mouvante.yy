@@ -32,13 +32,14 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"Xrange","filters":[],"listItems":[],"multiselect":false,"name":"Xrange","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"Yrange","filters":[],"listItems":[],"multiselect":false,"name":"Yrange","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"vitesse","filters":[],"listItems":[],"multiselect":false,"name":"vitesse","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_collision",
-    "path":"sprites/spr_collision/spr_collision.yy",
+    "name":"spr_collision_mouvante",
+    "path":"sprites/spr_collision_mouvante/spr_collision_mouvante.yy",
   },
   "spriteMaskId":null,
   "visible":true,

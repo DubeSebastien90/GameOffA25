@@ -1,7 +1,7 @@
-temps += 3
+temps += 3*vitesse
 
-hspd = Xrange*dsin(temps)
-vspd = Yrange*dsin(temps)
+hspd = Xrange*dsin(temps)*vitesse
+vspd = Yrange*dsin(temps)*vitesse
 
 x += hspd
 y += vspd
