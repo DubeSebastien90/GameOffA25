@@ -1,7 +1,7 @@
 nbHands = 5
 hands = []
 distParfaite = 30
-distMax = 80
+distMax = 70
 distMaxNoGrab = 110
 poulpeMasse = 10
 handMasse = 0.5
@@ -60,6 +60,7 @@ function handleHands(controls){
 				capture.getEaten()
 				hand.capture = false
 				hand.myCapture = noone
+				regrowArm()
 			}
 		}
 		
@@ -294,7 +295,23 @@ function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCen
 }
 
 function regrowArm(){
-	
+	for (var i = 0; i < nbHands; i++){
+		hand = hands[i]
+		if (!hand.active){
+			hand.active = true
+			hand.grabbing = false
+			hand.x = mouse_x
+			hand.y = mouse_y
+			hand.vspd = 0
+			hand.hspd = 0
+			var nbJoints = array_length(hand.joints)
+			for (var j = 0; j < nbJoints; j++){
+				hand.joints[j].x = mouse_x
+				hand.joints[j].y = mouse_y
+			}
+			return
+		}
+	}
 }
 
 function briserBras(index){

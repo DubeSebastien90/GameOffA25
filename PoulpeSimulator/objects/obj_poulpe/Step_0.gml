@@ -12,3 +12,11 @@ handleHands(controls)
 if keyboard_check_pressed(vk_space){
 	//screenShake(5,10)
 }
+
+if keyboard_check_pressed(ord("1")){
+	briserBras(0)	
+}
+
+if keyboard_check(ord("2")){
+	regrowArm()
+}
