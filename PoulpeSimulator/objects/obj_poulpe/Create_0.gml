@@ -170,7 +170,7 @@ function handleHands(controls){
 			tanAngle += 180;
 		hspd = lengthdir_x(totalSpd, tanAngle);
 		vspd = lengthdir_y(totalSpd, tanAngle);
-	} else{
+	}
 	
 	if place_meeting(x,y+vspd,obj_collision){
 	var collision = instance_place(x, y+vspd, obj_collision);
@@ -199,7 +199,7 @@ function handleHands(controls){
 		vspd = 0
 		}
 	}
-	}
+	
 	
 	x += hspd
 	y += vspd
