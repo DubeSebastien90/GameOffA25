@@ -77,6 +77,7 @@ function handleHands(controls){
 			}else if (food != noone){
 				hand.capture = true
 				hand.myCapture = food
+				food.captured = true
 				obj_son.play_sound(snd_boup,0.1)
 			}
 			}
@@ -86,6 +87,8 @@ function handleHands(controls){
 				obj_son.play_sound(snd_pop,0.1)
 			}
 			if hand.capture == true{
+				hand.myCapture.captured = false
+				hand.myCapture.spd = hand.myCapture.spdHurry
 				obj_son.play_sound(snd_pop,0.1)
 			}
 			hand.myCapture = noone
