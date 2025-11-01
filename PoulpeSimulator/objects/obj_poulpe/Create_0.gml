@@ -298,16 +298,28 @@ function regrowArm(){
 	for (var i = 0; i < nbHands; i++){
 		hand = hands[i]
 		if (!hand.active){
+			var ghost = instance_create_layer(hand.x,hand.y,hand.layer,obj_ghost_mass)
+			ghost.x = hand.x
+			ghost.y = hand.y
+			ghost.grabbing = hand.grabbing
+			ghost.myPoulpe = hand.myPoulpe
+			ghost.myCollision = hand.myCollision
+			ghost.pX = hand.pX
+			ghost.pY = hand.pY
+			
 			hand.active = true
 			hand.grabbing = false
-			hand.x = mouse_x
-			hand.y = mouse_y
+			hand.x = x + dcos(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
+			hand.y = y - dsin(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
+
+			
 			hand.vspd = 0
 			hand.hspd = 0
 			var nbJoints = array_length(hand.joints)
 			for (var j = 0; j < nbJoints; j++){
-				hand.joints[j].x = mouse_x
-				hand.joints[j].y = mouse_y
+				ghost.joints[i] = hand.joints[i]
+				hand.joints[j].x = x + dcos(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
+				hand.joints[j].y = y - dsin(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
 			}
 			return
 		}
@@ -318,6 +330,10 @@ function briserBras(index){
 	hands[index].active = false
 	if hands[index].grabbing{
 		handsGrabbing -= 1
+	}
+	if hands[index].capture{
+		hands[index].capture = false
+		hands[index].myCapture = noone
 	}
 	hands[index]._index = 2
 	screenShake(5,10)

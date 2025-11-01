@@ -24,6 +24,7 @@
     {"name":"obj_collision","order":1,"path":"objects/obj_collision/obj_collision.yy",},
     {"name":"obj_food","order":10,"path":"objects/obj_food/obj_food.yy",},
     {"name":"obj_game","order":3,"path":"objects/obj_game/obj_game.yy",},
+    {"name":"obj_ghost_mass","order":11,"path":"objects/obj_ghost_mass/obj_ghost_mass.yy",},
     {"name":"obj_mass","order":2,"path":"objects/obj_mass/obj_mass.yy",},
     {"name":"obj_round_collision","order":9,"path":"objects/obj_round_collision/obj_round_collision.yy",},
     {"name":"obj_son","order":6,"path":"objects/obj_son/obj_son.yy",},
