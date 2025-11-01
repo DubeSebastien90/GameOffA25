@@ -11,7 +11,9 @@ minHandDist = 3
 
 grabbing = false
 active = true
+capture = false
 
+myCapture = noone
 myPoulpe = noone
 mouseForce = new force(0,0)
 
@@ -251,6 +253,20 @@ function nearWall() {
     }
 
     return wall;
+}
+
+function handleCapture(){
+	if (myCapture != noone){
+		myCapture.x = lerp(myCapture.x,x,0.5)
+		myCapture.y = lerp(myCapture.y,y,0.5)
+	}
+}
+
+function nearFood(){
+	if place_meeting(x,y,obj_food){
+		return instance_place(x,y,obj_food)
+	}
+	return noone
 }
 
 function handleMovingBlocks(){

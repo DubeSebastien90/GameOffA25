@@ -53,23 +53,45 @@ function handleHands(controls){
 			continue
 		}
 		
+		if hand.capture{
+			hand.handleCapture()
+			var capture = hand.myCapture
+			if place_meeting(x,y, capture){
+				capture.getEaten()
+				hand.capture = false
+				hand.myCapture = noone
+			}
+		}
+		
 		if controls[i]{
 			var wall = hand.nearWall();
-			if (!hand.grabbing && wall != noone) {
+			var food = hand.nearFood();
+			if (!hand.grabbing && !hand.capture){
+			if (wall != noone) {
 				hand.grabbing = true;
 				hand.myCollision = wall;
 				handsGrabbing += 1;
 				hand.vspd = 0
 				hand.hspd = 0
 				obj_son.play_sound(snd_boup,0.1)
+			}else if (food != noone){
+				hand.capture = true
+				hand.myCapture = food
+				obj_son.play_sound(snd_boup,0.1)
+			}
 			}
 		} else{
 			if hand.grabbing == true{
 				handsGrabbing -= 1
 				obj_son.play_sound(snd_pop,0.1)
 			}
+			if hand.capture == true{
+				obj_son.play_sound(snd_pop,0.1)
+			}
+			hand.myCapture = noone
 			hand.myCollision = noone
 			hand.grabbing = false
+			hand.capture = false;
 		}
 		if !hand.grabbing{
 			hand._index = 0
@@ -266,6 +288,10 @@ function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCen
     normal_angle = (normal_angle + 180) mod 360;
 
     return normal_angle;
+}
+
+function regrowArm(){
+	
 }
 
 function briserBras(index){
