@@ -48,6 +48,7 @@
     {"name":"spr_dedCoral","order":13,"path":"sprites/spr_dedCoral/spr_dedCoral.yy",},
     {"name":"spr_eye","order":8,"path":"sprites/spr_eye/spr_eye.yy",},
     {"name":"spr_food","order":19,"path":"sprites/spr_food/spr_food.yy",},
+    {"name":"spr_hand","order":21,"path":"sprites/spr_hand/spr_hand.yy",},
     {"name":"spr_mass","order":1,"path":"sprites/spr_mass/spr_mass.yy",},
     {"name":"spr_poulpe","order":16,"path":"sprites/spr_poulpe/spr_poulpe.yy",},
     {"name":"spr_round_collision","order":18,"path":"sprites/spr_round_collision/spr_round_collision.yy",},

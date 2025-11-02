@@ -1,4 +1,5 @@
 if obj_poulpe.showHbx {draw_self(); exit}
+draw_sprite(spr_hand,_index,x,y)
 
 var tex = sprite_get_texture(tex_tentacle, 0)
 var bodyPoint = { x: myPoulpe.x, y: myPoulpe.y }

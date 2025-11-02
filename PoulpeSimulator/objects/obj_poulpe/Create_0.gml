@@ -167,12 +167,6 @@ function handleHands(controls){
 	hspd += allForces.x
 	vspd += allForces.y
 	
-	if(point_distance(0,0,allForces.x,allForces.y) > 0.1) && !fondMarinJoue{
-		fondMarinJoue = true
-		alarm[0] = 60
-		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
-	}
-	
 	var inst = instance_place(x, y, obj_collision_mouvante);
 
 	if (inst != noone) {
@@ -229,6 +223,13 @@ function handleHands(controls){
 		hspd = 0
 		vspd = 0
 		}
+	}
+	
+	
+	if(point_distance(0,0,hspd, vspd) > 0.1) && !fondMarinJoue{
+		fondMarinJoue = true
+		alarm[0] = 60
+		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
 	}
 	
 	
@@ -311,6 +312,7 @@ function regrowArm(){
 			ghost.myCollision = hand.myCollision
 			ghost.pX = hand.pX
 			ghost.pY = hand.pY
+			ghost._index = hand._index
 			
 			hand.active = true
 			hand.grabbing = false
@@ -341,7 +343,6 @@ function briserBras(index){
 		hands[index].capture = false
 		hands[index].myCapture = noone
 	}
-	hands[index]._index = 2
 	screenShake(5,10)
 	obj_son.play_sound(snd_tentacleRippOff,0.1)
 }
