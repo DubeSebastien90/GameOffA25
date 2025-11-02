@@ -7,6 +7,10 @@ controls = [
 	keyboard_check(vk_space)
 ]
 
+if !control{
+	controls = [0,0,0,0,0]
+}
+
 handleHands(controls)
 
 if keyboard_check_pressed(vk_space){

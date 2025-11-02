@@ -13,6 +13,8 @@ p3 = corners.p3
 p4 = corners.p4
 center = corners.center
 
+bateau = false
+
 function computeCollisionCorners(inst)
 {
     var w =  sprite_get_width(spr_collision)  * inst.image_xscale;

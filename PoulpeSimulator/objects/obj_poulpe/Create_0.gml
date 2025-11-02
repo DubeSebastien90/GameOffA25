@@ -13,6 +13,8 @@ stifnessAir = 0.003
 hspd = 0
 vspd = 0
 
+control = true
+
 mousePower = 0.15
 controls = [0,0,0,0,0]
 
@@ -72,7 +74,7 @@ function handleHands(controls){
 			}
 		}
 		
-		if controls[i]{
+		if controls[i] && control{
 			var wall = hand.nearWall();
 			var food = hand.nearFood();
 			if (!hand.grabbing && !hand.capture){
@@ -82,6 +84,18 @@ function handleHands(controls){
 				handsGrabbing += 1;
 				hand.vspd = 0
 				hand.hspd = 0
+				if wall.bateau && control{
+					wall.startBateau()
+					for (var j = 0; j < nbHands;j++){
+						var _hand = hands[j]
+						if i != j{
+							_hand.myCapture = noone
+							_hand.myCollision = noone
+							_hand.grabbing = false
+							_hand.capture = false;
+						}
+					}
+				}
 				obj_son.play_sound(snd_boup,0.1)
 			}else if (food != noone){
 				hand.capture = true
@@ -90,7 +104,7 @@ function handleHands(controls){
 				obj_son.play_sound(snd_boup,0.1)
 			}
 			}
-		} else{
+		} else if control{
 			if hand.grabbing == true{
 				handsGrabbing -= 1
 				obj_son.play_sound(snd_pop,0.1)
@@ -436,6 +450,7 @@ function regrowArm(){
 }
 
 function briserBras(index){
+	if control{
 	hands[index].active = false
 	if hands[index].grabbing{
 		handsGrabbing -= 1
@@ -446,4 +461,5 @@ function briserBras(index){
 	}
 	screenShake(5,10)
 	obj_son.play_sound(snd_tentacleRippOff,0.1)
+	}
 }
