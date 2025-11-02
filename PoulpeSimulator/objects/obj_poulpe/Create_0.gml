@@ -131,6 +131,11 @@ function handleHands(controls){
 				var dirHand = point_direction(x,y,hand.x, hand.y)
 				
 				centreMasseForce = centreMasseForce.add_force(new force(dcos(dirHand)*puissance,-dsin(dirHand)*puissance))
+				
+				if hand.myCollision != noone{
+					//TODO donner vitesse à poulpe
+					//centreMasseForce = centreMasseForce.add_force(new force(hand.myCollision.hspd,hand.myCollision.vspd))
+				}
 			}
 		}
 	}
