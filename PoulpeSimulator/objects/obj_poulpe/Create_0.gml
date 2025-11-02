@@ -31,6 +31,9 @@ cooldownGoute = 0
 cooldownGouteAverage = 10
 pupilScale = 1
 
+cooldownBubble = 0
+cooldownBubbleAverage = 30
+
 //debug
 showHbx = false
 
@@ -297,26 +300,43 @@ function handleHands(controls){
 	y += vspd
 	
 	//bonus
-	if(point_distance(0,0,hspd, vspd) > 0.15) && !fondMarinJoue{
-		fondMarinJoue = true
-		alarm[0] = 60
-		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
+	var hspdPoulpe = hspd
+	var vspdPoulpe = vspd
+	
+	if(point_distance(0,0,hspd, vspd) > 1){
+		if !fondMarinJoue{
+			fondMarinJoue = true
+			alarm[0] = 60
+			obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
+		}
 	}
 	
-	if vspd > 1.2 && handsGrabbing == 0{
-		if cooldownGoute < 0{
-			cooldownGoute = cooldownGouteAverage
-			var hspdPoulpe = hspd
-			with(instance_create_layer(x,y-6,"particules",obj_part_goutte)){
+	if(point_distance(0,0,hspd, vspd) > 1){
+		if cooldownBubble < 0{
+			cooldownBubble = cooldownBubbleAverage + random_range(0,10)
+			with(instance_create_layer(x,y-6,"particules",obj_bulle)){
 				_hspd = hspdPoulpe
+				_vspd = vspdPoulpe
 			}
-			pupilScale = lerp(pupilScale,1+(((vspd/1.2)-1)*0.8),0.1)
-			pupilScale = min(pupilScale,2)
 		}
-	} else{
-		pupilScale = lerp(pupilScale,1,0.1)
+	}
+	
+	if vspd > 1.2{
+		if handsGrabbing == 0{
+			if cooldownGoute < 0{
+				cooldownGoute = cooldownGouteAverage
+				with(instance_create_layer(x,y-6,"particules",obj_part_goutte)){
+					_hspd = hspdPoulpe
+				}
+				pupilScale = lerp(pupilScale,1+(((vspd/1.2)-1)*0.8),0.1)
+				pupilScale = min(pupilScale,2)
+			}
+		} else{
+			pupilScale = lerp(pupilScale,1,0.1)
+		}
 	}
 	cooldownGoute -= 1
+	cooldownBubble -= 1
 
 }
 

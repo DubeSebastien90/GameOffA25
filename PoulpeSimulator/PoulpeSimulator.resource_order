@@ -18,6 +18,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"audio_emitter_cleanup","order":7,"path":"objects/audio_emitter_cleanup/audio_emitter_cleanup.yy",},
+    {"name":"obj_bulle","order":14,"path":"objects/obj_bulle/obj_bulle.yy",},
     {"name":"obj_camera","order":5,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"obj_collision_mouvante_circular","order":12,"path":"objects/obj_collision_mouvante_circular/obj_collision_mouvante_circular.yy",},
     {"name":"obj_collision_mouvante","order":4,"path":"objects/obj_collision_mouvante/obj_collision_mouvante.yy",},
@@ -46,6 +47,7 @@
     {"name":"spr_back_eye","order":19,"path":"sprites/spr_back_eye/spr_back_eye.yy",},
     {"name":"spr_background","order":6,"path":"sprites/spr_background/spr_background.yy",},
     {"name":"spr_bucket","order":14,"path":"sprites/spr_bucket/spr_bucket.yy",},
+    {"name":"spr_bulle","order":23,"path":"sprites/spr_bulle/spr_bulle.yy",},
     {"name":"spr_collision_mouvante","order":16,"path":"sprites/spr_collision_mouvante/spr_collision_mouvante.yy",},
     {"name":"spr_collision_no_grab","order":9,"path":"sprites/spr_collision_no_grab/spr_collision_no_grab.yy",},
     {"name":"spr_coral","order":4,"path":"sprites/spr_coral/spr_coral.yy",},
