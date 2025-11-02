@@ -5,6 +5,8 @@ grab = true
 
 corners = computeCollisionCorners(self)
 
+circular = false
+
 p1 = corners.p1
 p2 = corners.p2
 p3 = corners.p3

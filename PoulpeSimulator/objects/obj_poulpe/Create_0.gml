@@ -179,7 +179,7 @@ function handleHands(controls){
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision_noGrab){
 		var collision = instance_place(x+hspd,y+vspd,obj_collision_noGrab)
-		var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center)
+		var normal_angle = calculateCollisionNormal(x,y,collision.p1,collision.p2,collision.p3,collision.p4,collision.center, collision.circular)
 		var nx = lengthdir_x(1, normal_angle); // normal x
 		var ny = lengthdir_y(1, normal_angle); // normal y
 
@@ -246,7 +246,11 @@ function handleHands(controls){
 	}
 }
 
-function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter){
+function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter, circular){
+	
+	if (circular){
+		return point_direction(collisionCenter.x,collisionCenter.y,poulpeX,poulpeY)
+	}
 	// Direction from center of rectangle to the collision point
     var dirToPoulpe = point_direction(collisionCenter.x, collisionCenter.y, poulpeX, poulpeY);
 

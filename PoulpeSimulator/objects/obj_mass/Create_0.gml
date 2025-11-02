@@ -106,6 +106,72 @@ function step(){
 	hspd += allForces.x
 	vspd += allForces.y
 	
+	
+	
+/// Smooth collision
+
+testerCollision = true
+
+if testerCollision{
+	var inst = instance_place(x, y, obj_collision_mouvante);
+
+	if (inst != noone) {
+		var normal_angle = point_direction(inst.center.x, inst.center.y, x, y);
+		var nx = lengthdir_x(1, normal_angle);
+		var ny = lengthdir_y(1, normal_angle);
+	
+		var safety = 100; // pour éviter boucles infinies
+	
+		repeat (safety) {
+			if (!place_meeting(x, y, obj_collision_mouvante))
+				break;
+			x += nx * 0.5;
+			y += ny * 0.5;
+		}
+	}
+	
+	var collisions = ds_list_create();
+	collision_point_list(x + hspd, y + vspd, obj_collision, false, true, collisions, true);
+	
+	if (ds_list_size(collisions) != 0) {
+		var best_hspd = hspd;
+		var best_vspd = vspd;
+		
+		for (var i = 0; i < ds_list_size(collisions); i++) {
+			var collision = collisions[| i];
+    
+			var normal_angle = myPoulpe.calculateCollisionNormal(x, y, collision.p1, collision.p2, collision.p3, collision.p4, collision.center, collision.circular);
+			var nx = lengthdir_x(1, normal_angle);
+			var ny = lengthdir_y(1, normal_angle);
+    
+			// Tangente à la surface
+			var tx = -ny;
+			var ty = nx;
+
+			// Produit scalaire (v ⋅ t)
+			var dot_t = hspd * tx + vspd * ty;
+
+			// Projection tangentielle
+			var proj_hspd = dot_t * tx;
+			var proj_vspd = dot_t * ty;
+    
+			// Si cette projection réduit plus la vitesse, on la garde
+			if proj_hspd < best_hspd{
+				best_hspd = proj_hspd
+			}
+			if proj_vspd < best_vspd{
+				best_vspd = proj_vspd
+			}
+		}
+
+		// Nettoyage
+		hspd = best_hspd
+		vspd = best_vspd
+		ds_list_destroy(collisions);
+	}
+	
+} else {
+	
 	var inst = instance_place(x, y, obj_collision_mouvante);
 
 	if (inst != noone) {
@@ -114,9 +180,6 @@ function step(){
 			y += sign(inst.vspd)
 		}
 	}
-	
-	
-/// Smooth collision
 
 var buffer_step = 0.1;
 var slide_damp = 0.95;
@@ -177,6 +240,8 @@ if (place_meeting(x + hspd, y, obj_collision))
 	hspd = 0
 	vspd = 0
 	}
+	
+} //fin tester collision
 	
 	x += hspd
 	y += vspd
