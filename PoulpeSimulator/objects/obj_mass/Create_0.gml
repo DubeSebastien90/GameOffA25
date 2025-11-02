@@ -116,7 +116,7 @@ if testerCollision{
 	var inst = instance_place(x, y, obj_collision_mouvante);
 
 	if (inst != noone) {
-		var normal_angle = point_direction(inst.center.x, inst.center.y, x, y);
+		var normal_angle = myPoulpe.calculateCollisionNormal(x,y,inst.p1, inst.p2, inst.p3, inst.p4, inst.center, inst.circular)
 		var nx = lengthdir_x(1, normal_angle);
 		var ny = lengthdir_y(1, normal_angle);
 	
@@ -125,8 +125,8 @@ if testerCollision{
 		repeat (safety) {
 			if (!place_meeting(x, y, obj_collision_mouvante))
 				break;
-			x += nx * 0.5;
-			y += ny * 0.5;
+			x += nx * 0.1;
+			y += ny * 0.1;
 		}
 	}
 	
@@ -157,10 +157,7 @@ if (ds_list_size(collisions) > 0) {
 			new_hspd -= dot_n * nx;
 			new_vspd -= dot_n * ny;
 		}
-		
-		// Debug visuel (facultatif)
-		draw_line(x, y, x + nx * 16, y + ny * 16); // normale
-		draw_line(x, y, x + new_hspd, y + new_vspd); // nouvelle vitesse
+	
 	}
 	
 	hspd = new_hspd;

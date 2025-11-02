@@ -37,6 +37,7 @@
   "resources":[
     {"id":{"name":"audio_emitter_cleanup","path":"objects/audio_emitter_cleanup/audio_emitter_cleanup.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
+    {"id":{"name":"obj_collision_mouvante_circular","path":"objects/obj_collision_mouvante_circular/obj_collision_mouvante_circular.yy",},},
     {"id":{"name":"obj_collision_mouvante","path":"objects/obj_collision_mouvante/obj_collision_mouvante.yy",},},
     {"id":{"name":"obj_collision_noGrab","path":"objects/obj_collision_noGrab/obj_collision_noGrab.yy",},},
     {"id":{"name":"obj_collision","path":"objects/obj_collision/obj_collision.yy",},},
@@ -76,6 +77,7 @@
     {"id":{"name":"spr_hand","path":"sprites/spr_hand/spr_hand.yy",},},
     {"id":{"name":"spr_mass","path":"sprites/spr_mass/spr_mass.yy",},},
     {"id":{"name":"spr_poulpe","path":"sprites/spr_poulpe/spr_poulpe.yy",},},
+    {"id":{"name":"spr_round_collision_moving","path":"sprites/spr_round_collision_moving/spr_round_collision_moving.yy",},},
     {"id":{"name":"spr_round_collision","path":"sprites/spr_round_collision/spr_round_collision.yy",},},
     {"id":{"name":"spr_santa","path":"sprites/spr_santa/spr_santa.yy",},},
     {"id":{"name":"spr_seashell","path":"sprites/spr_seashell/spr_seashell.yy",},},

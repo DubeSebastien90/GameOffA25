@@ -167,6 +167,9 @@ function handleHands(controls){
 	hspd += allForces.x
 	vspd += allForces.y
 	
+	var testCollision = true
+	
+	if (!testCollision){
 	var inst = instance_place(x, y, obj_collision_mouvante);
 
 	if (inst != noone) {
@@ -174,6 +177,7 @@ function handleHands(controls){
 			x += sign(inst.hspd);
 			y += sign(inst.vspd)
 		}
+	}
 	}
 	
 	
@@ -197,6 +201,62 @@ function handleHands(controls){
 		vspd = lengthdir_y(totalSpd, tanAngle);
 	}
 	
+	if testCollision{
+
+		var inst = instance_place(x, y, obj_collision_mouvante);
+
+			if (inst != noone) {
+				var normal_angle = calculateCollisionNormal(x,y,inst.p1, inst.p2, inst.p3, inst.p4, inst.center, inst.circular)
+				var nx = lengthdir_x(1, normal_angle);
+				var ny = lengthdir_y(1, normal_angle);
+	
+				var safety = 100; // pour éviter boucles infinies
+	
+				repeat (safety) {
+					if (!place_meeting(x, y, obj_collision_mouvante))
+						break;
+					x += nx * 0.1;
+					y += ny * 0.1;
+				}
+			}
+
+	var collisions = ds_list_create();
+	collision_point_list(x + hspd, y + vspd, obj_collision, false, true, collisions, true);
+
+	if (ds_list_size(collisions) > 0) {
+		var new_hspd = hspd;
+		var new_vspd = vspd;
+
+		for (var i = 0; i < ds_list_size(collisions); i++) {
+			var c = collisions[| i];
+		
+			var normal_angle = calculateCollisionNormal(
+				x, y,
+				c.p1, c.p2, c.p3, c.p4, c.center, c.circular
+			);
+		
+			// Vecteur normal unitaire
+			var nx = lengthdir_x(1, normal_angle);
+			var ny = lengthdir_y(1, normal_angle);
+		
+			// Produit scalaire entre la vitesse et la normale
+			var dot_n = new_hspd * nx + new_vspd * ny;
+		
+			// Si la vitesse entre dans la surface (dot_n < 0), on la retire
+			if (dot_n < 0) {
+				new_hspd -= dot_n * nx;
+				new_vspd -= dot_n * ny;
+			}
+		}
+	
+		hspd = new_hspd;
+		vspd = new_vspd;
+	}
+
+	ds_list_destroy(collisions);
+	
+	} else{
+		
 	if place_meeting(x,y+vspd,obj_collision){
 	var collision = instance_place(x, y+vspd, obj_collision);
 	if collision.grab{
@@ -231,11 +291,12 @@ function handleHands(controls){
 		alarm[0] = 60
 		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
 	}
-	
+	}//fin test collision
 	
 	x += hspd
 	y += vspd
 	
+	if !testCollision{
 	inst = instance_place(x, y, obj_collision_mouvante);
 	
 	if (inst != noone) {
@@ -243,6 +304,7 @@ function handleHands(controls){
 			x += sign(inst.hspd);
 			y += sign(inst.vspd)
 		}
+	}
 	}
 }
 
