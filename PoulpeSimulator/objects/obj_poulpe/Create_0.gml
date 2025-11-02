@@ -26,6 +26,11 @@ drawXScale = baseXScale
 //sons
 fondMarinJoue = false
 
+//bonus
+cooldownGoute = 0
+cooldownGouteAverage = 10
+pupilScale = 1
+
 //debug
 showHbx = false
 
@@ -285,34 +290,40 @@ function handleHands(controls){
 		}
 	}
 	
-	
-	if(point_distance(0,0,hspd, vspd) > 0.1) && !fondMarinJoue{
-		fondMarinJoue = true
-		alarm[0] = 60
-		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
-	}
+
 	}//fin test collision
 	
 	x += hspd
 	y += vspd
 	
-	if !testCollision{
-	inst = instance_place(x, y, obj_collision_mouvante);
+	//bonus
+	if(point_distance(0,0,hspd, vspd) > 0.15) && !fondMarinJoue{
+		fondMarinJoue = true
+		alarm[0] = 60
+		obj_son.play_random_sound([snd_sous_marin1,snd_sous_marin2,snd_sous_marin3],0.5)
+	}
 	
-	if (inst != noone) {
-		while (place_meeting(x, y, obj_collision_mouvante)) {
-			x += sign(inst.hspd);
-			y += sign(inst.vspd)
+	if vspd > 1.2 && handsGrabbing == 0{
+		if cooldownGoute < 0{
+			cooldownGoute = cooldownGouteAverage
+			var hspdPoulpe = hspd
+			with(instance_create_layer(x,y-6,"particules",obj_part_goutte)){
+				_hspd = hspdPoulpe
+			}
+			pupilScale = lerp(pupilScale,1+(((vspd/1.2)-1)*0.8),0.1)
+			pupilScale = min(pupilScale,2)
 		}
+	} else{
+		pupilScale = lerp(pupilScale,1,0.1)
 	}
-	}
+	cooldownGoute -= 1
+
 }
 
 function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter, circular){
 	
 	if (circular){
 		var angle = (point_direction(collisionCenter.x,collisionCenter.y,poulpeX,poulpeY)) mod 360
-		show_debug_message(angle)
 		return angle
 	}
 	// Direction from center of rectangle to the collision point
