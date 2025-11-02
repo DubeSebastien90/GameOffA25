@@ -55,6 +55,8 @@
     {"id":{"name":"screenShake","path":"scripts/screenShake/screenShake.yy",},},
     {"id":{"name":"shd_tentacle","path":"shaders/shd_tentacle/shd_tentacle.yy",},},
     {"id":{"name":"snd_boup","path":"sounds/snd_boup/snd_boup.yy",},},
+    {"id":{"name":"snd_crounch","path":"sounds/snd_crounch/snd_crounch.yy",},},
+    {"id":{"name":"snd_growing","path":"sounds/snd_growing/snd_growing.yy",},},
     {"id":{"name":"snd_pop","path":"sounds/snd_pop/snd_pop.yy",},},
     {"id":{"name":"snd_sous_marin1","path":"sounds/snd_sous_marin1/snd_sous_marin1.yy",},},
     {"id":{"name":"snd_sous_marin2","path":"sounds/snd_sous_marin2/snd_sous_marin2.yy",},},

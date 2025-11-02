@@ -301,9 +301,11 @@ function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCen
 }
 
 function regrowArm(){
+	obj_son.play_sound(snd_crounch,0.2)
 	for (var i = 0; i < nbHands; i++){
 		hand = hands[i]
 		if (!hand.active){
+			obj_son.play_sound(snd_growing,0.1)
 			var ghost = instance_create_layer(hand.x,hand.y,hand.layer,obj_ghost_mass)
 			ghost.x = hand.x
 			ghost.y = hand.y
