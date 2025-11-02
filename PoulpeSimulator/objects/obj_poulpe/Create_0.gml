@@ -70,7 +70,7 @@ function handleHands(controls){
 				hand.capture = false
 				hand.myCapture = noone
 				regrowArm()
-			} else{
+			} else if hand.myCapture!=noone{
 				hand.handleCapture()
 			}
 		}
