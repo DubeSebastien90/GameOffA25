@@ -311,7 +311,8 @@ function regrowArm(){
 			hand.grabbing = false
 			hand.x = x + dcos(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
 			hand.y = y - dsin(point_direction(x,y,mouse_x,mouse_y)) * min(distParfaite,point_distance(x,y,mouse_x,mouse_y))
-
+			hand.pX = x
+			hand.pY = y
 			
 			hand.vspd = 0
 			hand.hspd = 0

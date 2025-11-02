@@ -61,6 +61,7 @@
     {"id":{"name":"snd_sous_marin3","path":"sounds/snd_sous_marin3/snd_sous_marin3.yy",},},
     {"id":{"name":"snd_tentacleRippOff","path":"sounds/snd_tentacleRippOff/snd_tentacleRippOff.yy",},},
     {"id":{"name":"hbx_squid","path":"sprites/hbx_squid/hbx_squid.yy",},},
+    {"id":{"name":"spr_back_eye","path":"sprites/spr_back_eye/spr_back_eye.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_bucket","path":"sprites/spr_bucket/spr_bucket.yy",},},
     {"id":{"name":"spr_collision_mouvante","path":"sprites/spr_collision_mouvante/spr_collision_mouvante.yy",},},
