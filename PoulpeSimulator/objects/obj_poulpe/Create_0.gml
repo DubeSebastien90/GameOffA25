@@ -331,9 +331,9 @@ function handleHands(controls){
 				pupilScale = lerp(pupilScale,1+(((vspd/1.2)-1)*0.8),0.1)
 				pupilScale = min(pupilScale,2)
 			}
-		} else{
-			pupilScale = lerp(pupilScale,1,0.1)
 		}
+	}	else{
+		pupilScale = lerp(pupilScale,1,0.1)
 	}
 	cooldownGoute -= 1
 	cooldownBubble -= 1
