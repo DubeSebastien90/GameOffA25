@@ -8,7 +8,7 @@ handMasse = 0.5
 
 dampGrabb = 0.1
 dampAir = 0.005
-stifnessWall = 0.02
+stifnessWall = 0.003//0.02
 stifnessAir = 0.003
 hspd = 0
 vspd = 0
@@ -189,19 +189,6 @@ function handleHands(controls){
 	hspd += allForces.x
 	vspd += allForces.y
 	
-	var testCollision = true
-	
-	if (!testCollision){
-	var inst = instance_place(x, y, obj_collision_mouvante);
-
-	if (inst != noone) {
-		while (place_meeting(x, y, obj_collision_mouvante)) {
-			x += sign(inst.hspd);
-			y += sign(inst.vspd)
-		}
-	}
-	}
-	
 	
 	if place_meeting(x+hspd,y+vspd,obj_collision_noGrab){
 		var collision = instance_place(x+hspd,y+vspd,obj_collision_noGrab)
@@ -223,7 +210,6 @@ function handleHands(controls){
 		vspd = lengthdir_y(totalSpd, tanAngle);
 	}
 	
-	if testCollision{
 
 		var inst = instance_place(x, y, obj_collision_mouvante);
 
@@ -273,42 +259,10 @@ function handleHands(controls){
 	
 		hspd = new_hspd;
 		vspd = new_vspd;
+		
 	}
 
 	ds_list_destroy(collisions);
-	
-	} else{
-		
-	if place_meeting(x,y+vspd,obj_collision){
-	var collision = instance_place(x, y+vspd, obj_collision);
-	if collision.grab{
-	while!(place_meeting(x,y+sign(vspd),obj_collision)){
-		y += sign(vspd)
-	}
-	vspd = 0
-	}
-	}
-	
-	if place_meeting(x+hspd,y,obj_collision){
-	var collision = instance_place(x+hspd, y, obj_collision);
-	if collision.grab{
-	while!(place_meeting(x+sign(hspd),y,obj_collision)){
-		x += sign(hspd)
-	}
-	hspd = 0
-	}
-	}
-	
-	if place_meeting(x+hspd,y+vspd,obj_collision){
-		var collision = instance_place(x+hspd,y+vspd,obj_collision)
-		if collision.grab{
-		hspd = 0
-		vspd = 0
-		}
-	}
-	
-
-	}//fin test collision
 	
 	x += hspd
 	y += vspd
@@ -457,6 +411,7 @@ function briserBras(index){
 	}
 	if hands[index].capture{
 		hands[index].capture = false
+		hands[index].myCapture.captured = false
 		hands[index].myCapture = noone
 	}
 	screenShake(5,10)
