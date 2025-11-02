@@ -326,7 +326,10 @@ function handleCapture(){
 
 function nearFood(){
 	if place_meeting(x,y,obj_food){
-		return instance_place(x,y,obj_food)
+		var inst = instance_place(x,y,obj_food)
+		if inst.captured = false{
+			return inst
+		}
 	}
 	return noone
 }
