@@ -1,4 +1,6 @@
 draw_self()
+draw_set_valign(fa_center)
+draw_set_halign(fa_middle)
 //draw_text(p1.x,p1.y,"p1")
 //draw_text(p2.x,p2.y,"p2")
 //draw_text(p3.x,p3.y,"p3")

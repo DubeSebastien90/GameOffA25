@@ -249,7 +249,9 @@ function handleHands(controls){
 function calculateCollisionNormal(poulpeX, poulpeY, p1, p2, p3, p4, collisionCenter, circular){
 	
 	if (circular){
-		return point_direction(collisionCenter.x,collisionCenter.y,poulpeX,poulpeY)
+		var angle = (point_direction(collisionCenter.x,collisionCenter.y,poulpeX,poulpeY)) mod 360
+		show_debug_message(angle)
+		return angle
 	}
 	// Direction from center of rectangle to the collision point
     var dirToPoulpe = point_direction(collisionCenter.x, collisionCenter.y, poulpeX, poulpeY);

@@ -131,44 +131,44 @@ if testerCollision{
 	}
 	
 	var collisions = ds_list_create();
-	collision_point_list(x + hspd, y + vspd, obj_collision, false, true, collisions, true);
-	
-	if (ds_list_size(collisions) != 0) {
-		var best_hspd = hspd;
-		var best_vspd = vspd;
+collision_point_list(x + hspd, y + vspd, obj_collision, false, true, collisions, true);
+
+if (ds_list_size(collisions) > 0) {
+	var new_hspd = hspd;
+	var new_vspd = vspd;
+
+	for (var i = 0; i < ds_list_size(collisions); i++) {
+		var c = collisions[| i];
 		
-		for (var i = 0; i < ds_list_size(collisions); i++) {
-			var collision = collisions[| i];
-    
-			var normal_angle = myPoulpe.calculateCollisionNormal(x, y, collision.p1, collision.p2, collision.p3, collision.p4, collision.center, collision.circular);
-			var nx = lengthdir_x(1, normal_angle);
-			var ny = lengthdir_y(1, normal_angle);
-    
-			// Tangente à la surface
-			var tx = -ny;
-			var ty = nx;
-
-			// Produit scalaire (v ⋅ t)
-			var dot_t = hspd * tx + vspd * ty;
-
-			// Projection tangentielle
-			var proj_hspd = dot_t * tx;
-			var proj_vspd = dot_t * ty;
-    
-			// Si cette projection réduit plus la vitesse, on la garde
-			if proj_hspd < best_hspd{
-				best_hspd = proj_hspd
-			}
-			if proj_vspd < best_vspd{
-				best_vspd = proj_vspd
-			}
+		var normal_angle = myPoulpe.calculateCollisionNormal(
+			x, y,
+			c.p1, c.p2, c.p3, c.p4, c.center, c.circular
+		);
+		
+		// Vecteur normal unitaire
+		var nx = lengthdir_x(1, normal_angle);
+		var ny = lengthdir_y(1, normal_angle);
+		
+		// Produit scalaire entre la vitesse et la normale
+		var dot_n = new_hspd * nx + new_vspd * ny;
+		
+		// Si la vitesse entre dans la surface (dot_n < 0), on la retire
+		if (dot_n < 0) {
+			new_hspd -= dot_n * nx;
+			new_vspd -= dot_n * ny;
 		}
-
-		// Nettoyage
-		hspd = best_hspd
-		vspd = best_vspd
-		ds_list_destroy(collisions);
+		
+		// Debug visuel (facultatif)
+		draw_line(x, y, x + nx * 16, y + ny * 16); // normale
+		draw_line(x, y, x + new_hspd, y + new_vspd); // nouvelle vitesse
 	}
+	
+	hspd = new_hspd;
+	vspd = new_vspd;
+}
+
+ds_list_destroy(collisions);
+
 	
 } else {
 	
