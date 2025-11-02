@@ -64,13 +64,14 @@ function handleHands(controls){
 		}
 		
 		if hand.capture{
-			hand.handleCapture()
 			var capture = hand.myCapture
 			if place_meeting(x,y, capture){
 				capture.getEaten()
 				hand.capture = false
 				hand.myCapture = noone
 				regrowArm()
+			} else{
+				hand.handleCapture()
 			}
 		}
 		
@@ -250,6 +251,7 @@ function handleHands(controls){
 			// Produit scalaire entre la vitesse et la normale
 			var dot_n = new_hspd * nx + new_vspd * ny;
 		
+			// Si la vitesse entre dans la surface (dot_n < 0), on la retire
 			// Si la vitesse entre dans la surface (dot_n < 0), on la retire
 			if (dot_n < 0) {
 				new_hspd -= dot_n * nx;
