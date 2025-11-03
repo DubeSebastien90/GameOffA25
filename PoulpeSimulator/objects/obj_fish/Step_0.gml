@@ -1,0 +1,1 @@
+_scaleL = lerp(_scaleL,scaleL,0.1)

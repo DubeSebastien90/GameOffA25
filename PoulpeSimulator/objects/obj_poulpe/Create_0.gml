@@ -1,7 +1,7 @@
 nbHands = 5
 hands = []
 distParfaite = 30
-distMax = 75
+distMax = 70
 distMaxNoGrab = 100
 poulpeMasse = 10
 handMasse = 0.5

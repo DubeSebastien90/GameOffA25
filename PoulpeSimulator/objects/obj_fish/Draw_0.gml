@@ -1,0 +1,1 @@
+draw_sprite_ext(spr_fish,0,x+32*scale,y+32*scale,0.3*scale*-_scaleL,0.3*scale,0,c_white,1)
