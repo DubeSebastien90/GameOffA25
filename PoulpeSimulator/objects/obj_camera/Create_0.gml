@@ -16,7 +16,7 @@ zoom_ammount = 1
 zoom_lerp = 0.2
 
 offsetX = 0
-offsetY = 0
+offsetY = -40
 
 initialDragX = 0
 initialDragY = 0

@@ -25,8 +25,8 @@ if mouse_wheel_down(){
 }
 
 //keep in center
-//x = clamp(x, (room_width / 2) - (_camW / 2), (room_height / 2) + (_camW / 2))
-//y = clamp(y, (room_height / 2) - (_camH / 2), (room_height / 2) + (_camH / 2))
+x = clamp(x, _camW / 2, room_width - _camW / 2);
+y = clamp(y, _camH / 2, room_height - _camH / 2);
 
 //screen shake
 x += random_range(-shake_remain,shake_remain);
