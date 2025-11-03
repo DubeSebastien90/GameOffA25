@@ -15,6 +15,8 @@ center = corners.center
 
 bateau = false
 
+image_alpha = 0
+
 function computeCollisionCorners(inst)
 {
     var w =  sprite_get_width(spr_collision)  * inst.image_xscale;

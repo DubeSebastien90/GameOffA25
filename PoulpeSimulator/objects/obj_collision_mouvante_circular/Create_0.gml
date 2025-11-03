@@ -3,4 +3,4 @@ event_inherited();
 
 
 circular = true
-
+image_alpha = 1

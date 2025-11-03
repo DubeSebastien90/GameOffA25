@@ -7,7 +7,7 @@ temps = 0
 yBegin = y
 range = 5
 
-
+image_alpha = 1
 
 function startBateau(){
 	obj_poulpe.control = false
