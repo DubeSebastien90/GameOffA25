@@ -18,6 +18,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"audio_emitter_cleanup","order":7,"path":"objects/audio_emitter_cleanup/audio_emitter_cleanup.yy",},
+    {"name":"obj_bateau","order":19,"path":"objects/obj_bateau/obj_bateau.yy",},
     {"name":"obj_bulle","order":14,"path":"objects/obj_bulle/obj_bulle.yy",},
     {"name":"obj_camera","order":5,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"obj_collision_mouvante_bateau","order":15,"path":"objects/obj_collision_mouvante_bateau/obj_collision_mouvante_bateau.yy",},

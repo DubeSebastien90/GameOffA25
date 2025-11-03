@@ -19,3 +19,6 @@ if started{
 	p4 = corners.p4
 	center = corners.center
 }
+
+myBateau.x = x
+myBateau.y = y

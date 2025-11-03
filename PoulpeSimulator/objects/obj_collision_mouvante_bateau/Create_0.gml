@@ -14,3 +14,6 @@ function startBateau(){
 	alarm[0] = 60
 	alarm[1] = 1
 }
+
+myBateau = instance_create_layer(x,y,"head",obj_bateau)
+myBateau._h = sprite_height

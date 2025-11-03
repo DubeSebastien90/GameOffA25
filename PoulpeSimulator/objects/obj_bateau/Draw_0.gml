@@ -1,0 +1,1 @@
+draw_sprite_ext(spr_bateau,0,x+15,y+_h,0.4,0.4,0,c_white,1)

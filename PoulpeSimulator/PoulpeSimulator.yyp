@@ -37,6 +37,7 @@
   "resources":[
     {"id":{"name":"fnt_pixel","path":"fonts/fnt_pixel/fnt_pixel.yy",},},
     {"id":{"name":"audio_emitter_cleanup","path":"objects/audio_emitter_cleanup/audio_emitter_cleanup.yy",},},
+    {"id":{"name":"obj_bateau","path":"objects/obj_bateau/obj_bateau.yy",},},
     {"id":{"name":"obj_bulle","path":"objects/obj_bulle/obj_bulle.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"obj_collision_mouvante_bateau","path":"objects/obj_collision_mouvante_bateau/obj_collision_mouvante_bateau.yy",},},
