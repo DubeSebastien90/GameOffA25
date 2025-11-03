@@ -39,6 +39,7 @@
     {"name":"rm_test_collision","order":2,"path":"rooms/rm_test_collision/rm_test_collision.yy",},
     {"name":"scr_force","order":3,"path":"scripts/scr_force/scr_force.yy",},
     {"name":"screenShake","order":4,"path":"scripts/screenShake/screenShake.yy",},
+    {"name":"snd_bateau","order":9,"path":"sounds/snd_bateau/snd_bateau.yy",},
     {"name":"snd_crounch","order":6,"path":"sounds/snd_crounch/snd_crounch.yy",},
     {"name":"snd_growing","order":7,"path":"sounds/snd_growing/snd_growing.yy",},
     {"name":"snd_pop","order":1,"path":"sounds/snd_pop/snd_pop.yy",},

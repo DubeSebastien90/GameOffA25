@@ -281,7 +281,7 @@ function handleHands(controls){
 		}
 	}
 	
-	if(point_distance(0,0,hspd, vspd) > 1){
+	if(point_distance(0,0,hspd, vspd) > 1) && control{
 		if cooldownBubble < 0{
 			cooldownBubble = cooldownBubbleAverage + random_range(0,10)
 			with(instance_create_layer(x,y-6,"particules",obj_bulle)){

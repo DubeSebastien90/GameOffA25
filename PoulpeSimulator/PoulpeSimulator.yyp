@@ -61,6 +61,7 @@
     {"id":{"name":"scr_force","path":"scripts/scr_force/scr_force.yy",},},
     {"id":{"name":"screenShake","path":"scripts/screenShake/screenShake.yy",},},
     {"id":{"name":"shd_tentacle","path":"shaders/shd_tentacle/shd_tentacle.yy",},},
+    {"id":{"name":"snd_bateau","path":"sounds/snd_bateau/snd_bateau.yy",},},
     {"id":{"name":"snd_boup","path":"sounds/snd_boup/snd_boup.yy",},},
     {"id":{"name":"snd_crounch","path":"sounds/snd_crounch/snd_crounch.yy",},},
     {"id":{"name":"snd_growing","path":"sounds/snd_growing/snd_growing.yy",},},

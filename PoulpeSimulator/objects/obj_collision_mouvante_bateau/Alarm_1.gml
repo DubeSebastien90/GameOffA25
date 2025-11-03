@@ -1,0 +1,1 @@
+obj_son.play_sound(snd_bateau,0)
