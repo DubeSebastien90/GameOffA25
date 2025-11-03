@@ -1,3 +1,5 @@
+prevX = x
+
 if captured{
 	//PANIQUE
 } else {
@@ -20,4 +22,9 @@ if captured{
 			y -= dsin(dir)*spd
 		}
 	}
+}
+
+hspd = x - prevX
+if hspd != 0{
+	scale = sign(hspd)
 }

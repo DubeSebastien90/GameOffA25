@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_food",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_fish2",
+  "eventList":[],
   "managed":true,
-  "name":"obj_food",
+  "name":"obj_fish2",
   "overriddenProperties":[],
   "parent":{
     "name":"Objets",
@@ -31,10 +27,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_food",
-    "path":"sprites/spr_food/spr_food.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
