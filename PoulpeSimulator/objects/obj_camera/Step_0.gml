@@ -1,3 +1,14 @@
+if room = rm_finalLevel && instance_exists(obj_poulpe){
+	follow = obj_poulpe
+} 
+if room = rm_menu{
+	x = room_width/2 - 400
+	y = room_height/2 + 80
+	follow = self
+	zoom_ammount = 0.75
+	zoom_dir = 0.75
+}
+
 //update destination
 if (instance_exists(follow)) 
 {
@@ -17,7 +28,7 @@ y += (yTo - y) / 5
 //movement
 if mouse_wheel_up(){
 	zoom_dir *= 0.96
-	zoom_dir = max(0.2,zoom_dir)
+	zoom_dir = max(0.5,zoom_dir)
 }
 if mouse_wheel_down(){
 	zoom_dir *= 1.04

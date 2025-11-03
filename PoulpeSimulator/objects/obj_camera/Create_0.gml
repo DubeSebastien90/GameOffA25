@@ -1,5 +1,5 @@
 cam = view_camera[0]; 
-follow = obj_poulpe; 
+follow = self; 
 xTo = follow.x
 yTo = follow.y
 shake_lenght = 0; 

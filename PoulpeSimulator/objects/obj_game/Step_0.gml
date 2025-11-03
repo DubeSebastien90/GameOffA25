@@ -20,6 +20,14 @@ if keyboard_check_pressed(vk_f2){
 	grav = grav == 0 ? 0.02 : 0
 }
 
+if room = rm_menu{
+	if mouse_check_button_pressed(mb_left){
+		room = rm_finalLevel
+	}
+}
+
+if room != rm_menu && cheats{
+
 if flyHack {
 	if keyboard_check(vk_down){
 		obj_poulpe.y += 5
@@ -81,4 +89,6 @@ if (keyboard_check_pressed(vk_f11))
 
         show_debug_message("Full room screenshot saved: " + _filename);
     }
+}
+
 }

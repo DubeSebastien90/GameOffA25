@@ -35,6 +35,7 @@
   },
   "name":"PoulpeSimulator",
   "resources":[
+    {"id":{"name":"fnt_pixel","path":"fonts/fnt_pixel/fnt_pixel.yy",},},
     {"id":{"name":"audio_emitter_cleanup","path":"objects/audio_emitter_cleanup/audio_emitter_cleanup.yy",},},
     {"id":{"name":"obj_bulle","path":"objects/obj_bulle/obj_bulle.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
@@ -51,7 +52,9 @@
     {"id":{"name":"obj_poulpe","path":"objects/obj_poulpe/obj_poulpe.yy",},},
     {"id":{"name":"obj_round_collision","path":"objects/obj_round_collision/obj_round_collision.yy",},},
     {"id":{"name":"obj_son","path":"objects/obj_son/obj_son.yy",},},
+    {"id":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},},
     {"id":{"name":"rm_finalLevel","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},},
+    {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"id":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},
     {"id":{"name":"rm_test_collision","path":"rooms/rm_test_collision/rm_test_collision.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
@@ -67,6 +70,7 @@
     {"id":{"name":"snd_sous_marin3","path":"sounds/snd_sous_marin3/snd_sous_marin3.yy",},},
     {"id":{"name":"snd_tentacleRippOff","path":"sounds/snd_tentacleRippOff/snd_tentacleRippOff.yy",},},
     {"id":{"name":"hbx_squid","path":"sprites/hbx_squid/hbx_squid.yy",},},
+    {"id":{"name":"spr_anchor","path":"sprites/spr_anchor/spr_anchor.yy",},},
     {"id":{"name":"spr_back_eye","path":"sprites/spr_back_eye/spr_back_eye.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_bucket","path":"sprites/spr_bucket/spr_bucket.yy",},},
@@ -91,6 +95,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_finalLevel","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},},
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"roomId":{"name":"rm_mountain","path":"rooms/rm_mountain/rm_mountain.yy",},},

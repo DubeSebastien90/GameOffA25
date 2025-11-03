@@ -6,6 +6,8 @@ flyHack = false
 stayInPlace = false
 showHbx = false
 
+cheats = true
+
 gameControls = [
 	"Q",
 	"W",
