@@ -8,7 +8,7 @@ handMasse = 0.5
 
 dampGrabb = 0.1
 dampAir = 0.005
-stifnessWall = 0.003//0.02
+stifnessWall = 0.02
 stifnessAir = 0.003
 hspd = 0
 vspd = 0

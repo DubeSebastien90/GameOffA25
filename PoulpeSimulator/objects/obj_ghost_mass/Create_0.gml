@@ -147,7 +147,7 @@ if (place_meeting(x + hspd, y, obj_collision))
 function computeJoints(){
 	//joints
 	pX = lerp(pX,x,0.01)
-	pY = lerp(pY,y+obj_poulpe.distParfaite*1.5,0.1)
+	pY = lerp(pY,y+30*1.5,0.1)
 	var dist = point_distance(x, y, pX, pY)
 	var effectiveDist = max(dist - poulpeCirconference, 0);
 	var invDir = point_direction(pX, pY, x, y);
