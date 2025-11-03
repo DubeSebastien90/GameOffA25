@@ -50,3 +50,5 @@ function play_sound_myself(snd, boucle){
 	
 	return emitter;
 }
+
+alarm[0] = 60

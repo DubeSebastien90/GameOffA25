@@ -46,6 +46,7 @@
     {"name":"snd_sous_marin2","order":4,"path":"sounds/snd_sous_marin2/snd_sous_marin2.yy",},
     {"name":"snd_sous_marin3","order":5,"path":"sounds/snd_sous_marin3/snd_sous_marin3.yy",},
     {"name":"snd_tentacleRippOff","order":2,"path":"sounds/snd_tentacleRippOff/snd_tentacleRippOff.yy",},
+    {"name":"snd_whale","order":8,"path":"sounds/snd_whale/snd_whale.yy",},
     {"name":"hbx_squid","order":2,"path":"sprites/hbx_squid/hbx_squid.yy",},
     {"name":"spr_anchor","order":25,"path":"sprites/spr_anchor/spr_anchor.yy",},
     {"name":"spr_back_eye","order":19,"path":"sprites/spr_back_eye/spr_back_eye.yy",},

@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"snd_growing.wav",
-  "volume":0.74,
+  "volume":0.4,
 }
