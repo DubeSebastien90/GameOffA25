@@ -263,6 +263,7 @@
     {"name":"inst_5956712C","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},
     {"name":"inst_665C7D03","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},
     {"name":"inst_40A6176F","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},
+    {"name":"inst_7055F1BB","path":"rooms/rm_finalLevel/rm_finalLevel.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -283,6 +284,9 @@
         {"$GMRInstance":"v4","%Name":"inst_6C9AE8BD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6C9AE8BD","objectId":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"propertyId":{"name":"textToDisplay","path":"objects/obj_text/obj_text.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"How about a little slide!",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1312.0,"y":3488.0,},
+        {"$GMRInstance":"v4","%Name":"inst_7055F1BB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7055F1BB","objectId":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"propertyId":{"name":"textToDisplay","path":"objects/obj_text/obj_text.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Mr.Pulp will return soon! \\n Thanks for playing :)",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":2336.0,},
       ],"layers":[],"name":"ui","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"head","depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_7C4D6EA6_2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7C4D6EA6_2","objectId":{"name":"obj_poulpe","path":"objects/obj_poulpe/obj_poulpe.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":352.0,"y":4784.0,},
