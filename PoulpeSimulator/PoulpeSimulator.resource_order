@@ -52,6 +52,7 @@
     {"name":"spr_anchor","order":25,"path":"sprites/spr_anchor/spr_anchor.yy",},
     {"name":"spr_back_eye","order":19,"path":"sprites/spr_back_eye/spr_back_eye.yy",},
     {"name":"spr_background","order":6,"path":"sprites/spr_background/spr_background.yy",},
+    {"name":"spr_bateau","order":27,"path":"sprites/spr_bateau/spr_bateau.yy",},
     {"name":"spr_bucket","order":14,"path":"sprites/spr_bucket/spr_bucket.yy",},
     {"name":"spr_bulle","order":23,"path":"sprites/spr_bulle/spr_bulle.yy",},
     {"name":"spr_collision_mouvante_bateau","order":24,"path":"sprites/spr_collision_mouvante_bateau/spr_collision_mouvante_bateau.yy",},
@@ -68,6 +69,7 @@
     {"name":"spr_round_collision","order":17,"path":"sprites/spr_round_collision/spr_round_collision.yy",},
     {"name":"spr_seaweed","order":13,"path":"sprites/spr_seaweed/spr_seaweed.yy",},
     {"name":"spr_squid","order":10,"path":"sprites/spr_squid/spr_squid.yy",},
+    {"name":"tex_tentacle_lol","order":26,"path":"sprites/tex_tentacle_lol/tex_tentacle_lol.yy",},
     {"name":"tex_tentacle","order":8,"path":"sprites/tex_tentacle/tex_tentacle.yy",},
   ],
 }

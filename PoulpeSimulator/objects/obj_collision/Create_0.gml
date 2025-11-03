@@ -15,7 +15,7 @@ center = corners.center
 
 bateau = false
 
-image_alpha = 0
+
 
 function computeCollisionCorners(inst)
 {
